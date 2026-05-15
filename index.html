@@ -124,30 +124,42 @@ function selectOption(option, currentNodeId) {
 
   /*
     WRONG ANSWER SYSTEM
-    Later you can add:
-
-    wrong: true,
-    hint: 'Try looking at the haiku again.'
-
   */
 
   if (option.wrong) {
 
     hintElement.innerHTML =
-      option.hint
+      `<div class="hint-box">
+        ${option.hint}
+      </div>`
 
     showTextNode(currentNodeId)
+
+    setTimeout(() => {
+
+      hintElement.innerHTML =
+        `<div class="hint-box">
+          ${option.hint}
+        </div>`
+
+    }, 10)
 
     return
   }
 
-  previousNodeId = currentNodeId
+  /*
+    NORMAL ANSWER
+  */
 
   if (option.nextText <= 0) {
     return startGame()
   }
 
   showTextNode(option.nextText)
+
+  document.querySelector(
+    '.game-container'
+  ).scrollTop = 0
 }
 
 const textNodes = [
