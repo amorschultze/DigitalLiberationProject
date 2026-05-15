@@ -1,241 +1,504 @@
+# index.html
+
+```html
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tết Festival</title>
 
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0"
->
-
-<title>Trăng Hy Vọng Volunteer Form</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zhi+Mang+Xing&display=swap" rel="stylesheet">
 
 <style>
 
-/* PAGE */
-
 html,
 body {
-
   height: 100%;
-
-  margin: 0;
   padding: 0;
-
+  margin: 0;
   display: flex;
-
   justify-content: center;
   align-items: center;
-
   background:
-    radial-gradient(
-      circle,
-      #1a0000,
-      #000000
+    linear-gradient(
+      135deg,
+      #fff8dc,
+      #fdee83,
+      #d9af64,
+      #b8860b
     );
-
-  font-family:
-    "Lucida Console",
-    monospace;
-
   overflow: hidden;
+  font-family:
+    'Zhi Mang Xing',
+    cursive;
 }
 
-/* MAIN CARD */
-
 .card {
-
-  position: relative;
-
-  width: 900px;
-  height: 650px;
-
   overflow: hidden;
-
-  border: 10px solid #d7000f;
-
+  margin: auto;
+  width: 700px;
+  height: 950px;
+  max-width: 95vw;
+  max-height: 95vh;
+  border: 14px solid #b22222;
+  filter:
+    drop-shadow(
+      6px 6px 18px rgba(0,0,0,0.25)
+    );
+  position: relative;
   background:
     linear-gradient(
       45deg,
-      #fdee83,
-      #fefcea
-    );
-
-  box-shadow:
-    0 0 25px black;
-
-  filter:
-    drop-shadow(
-      0 0 20px black
+      #fff9d9,
+      #f7e3a1
     );
 }
-
-/* TITLE */
 
 .card-title {
-
+  margin: 0;
   position: absolute;
-
-  top: 20px;
-  right: 20px;
-
+  top: 40px;
+  right: 40px;
+  font-size: 90px;
+  letter-spacing: 24px;
+  line-height: 1;
   writing-mode: vertical-rl;
-
-  font-size: 40px;
-
-  letter-spacing: 10px;
-
-  color: #d7000f;
-
-  opacity: 0.85;
-
-  z-index: 2;
+  color: #b22222;
+  z-index: 5;
+  text-shadow:
+    2px 2px 4px rgba(0,0,0,0.12);
 }
 
-/* FORM CONTAINER */
+.card-seal {
+  width: 120px;
+  height: 120px;
+  position: absolute;
+  bottom: 420px;
+  right: 150px;
+  border-radius: 50%;
+  opacity: 0.75;
+  box-shadow:
+    0 0 18px rgba(0,0,0,0.2);
+
+  background-image:
+    url('https://i.imgur.com/ZK7m8Qx.png');
+
+  background-size: 300% 400%;
+  background-repeat: no-repeat;
+}
+
+.card-flower-petal {
+  position: absolute;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background:
+    linear-gradient(
+      #df4554,
+      #e16561
+    );
+}
+
+.petal-1 {
+  top: 0;
+  left: 0;
+}
+
+.petal-2 {
+  top: 15px;
+  left: 22px;
+}
+
+.petal-3 {
+  top: 38px;
+  left: 15px;
+}
+
+.petal-4 {
+  top: 38px;
+  left: -15px;
+}
+
+.petal-5 {
+  top: 15px;
+  left: -22px;
+}
+
+.card-flower-pollen {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ffe27a;
+}
+
+.pollen-1 {
+  top: 28px;
+  left: 18px;
+}
+
+.pollen-2 {
+  top: 34px;
+  left: 28px;
+}
+
+.pollen-3 {
+  top: 44px;
+  left: 24px;
+}
+
+.pollen-4 {
+  top: 44px;
+  left: 12px;
+}
+
+.pollen-5 {
+  top: 34px;
+  left: 8px;
+}
+
+.card-flower-1 {
+  position: relative;
+  top: 320px;
+  left: 100px;
+  transform: rotate(-10deg);
+}
+
+.card-flower-2 {
+  position: relative;
+  top: 120px;
+  left: 260px;
+  transform:
+    rotate(10deg)
+    scale(1.1);
+}
 
 .game-container {
-
   position: absolute;
-
-  top: 40px;
+  top: 70px;
   left: 40px;
-
-  width: 560px;
-  height: 500px;
-
-  overflow: hidden;
-
+  width: 420px;
+  height: 700px;
+  overflow-y: auto;
   background:
-    rgba(0,0,0,0.82);
-
+    rgba(255,248,220,0.96);
   border:
-    3px solid #d7000f;
-
-  padding: 0;
-
+    4px solid #d9af64;
+  padding: 28px;
   box-sizing: border-box;
-
-  z-index: 5;
-
+  color: #5c1a1b;
+  z-index: 10;
   box-shadow:
-    0 0 15px black;
+    0 0 20px rgba(0,0,0,0.15);
+  font-family:
+    "Georgia",
+    serif;
+  backdrop-filter: blur(2px);
 }
 
-/* GOOGLE FORM */
-
-.volunteer-form {
-
-  width: 100%;
-  height: 100%;
-
-  border: none;
-
-  background: white;
+#text {
+  white-space: pre-line;
+  line-height: 1.8;
+  font-size: 15px;
+  margin-bottom: 30px;
 }
 
-/* DECORATIVE HILLS */
+#text h1 {
+  color: #fdee83;
+  font-size: 34px;
+  margin-bottom: 20px;
+  border-bottom: 3px solid #d7000f;
+  padding-bottom: 10px;
+  text-shadow: 0 0 10px black;
+}
+
+#text h2 {
+  color: #ffcc66;
+  font-size: 26px;
+  margin-top: 25px;
+  margin-bottom: 15px;
+  text-shadow: 0 0 8px black;
+}
+
+#text h3 {
+  color: #ffd98a;
+  font-size: 20px;
+  margin-top: 18px;
+  margin-bottom: 10px;
+}
+
+.btn-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.btn {
+  background: #d9af64;
+  border:
+    2px solid #8b0000;
+  padding: 18px;
+  color: #5c1a1b;
+  cursor: pointer;
+  transition: 0.3s;
+  font-family:
+    "Georgia",
+    serif;
+  font-size: 22px;
+  border-radius: 8px;
+  box-shadow:
+    0 3px 8px rgba(0,0,0,0.15);
+}
+
+.btn:hover {
+  background: #8b0000;
+  color: #fff8dc;
+  transform: scale(1.03);
+}
+
+.form-button {
+  display: inline-block;
+  margin-top: 25px;
+  padding: 18px 24px;
+  background: #b22222;
+  color: #fff8dc;
+  text-decoration: none;
+  border-radius: 10px;
+  font-size: 22px;
+  transition: 0.3s;
+}
+
+.form-button:hover {
+  background: #8b0000;
+  transform: scale(1.03);
+}
 
 .card-hill {
-
   position: absolute;
-
   bottom: 0;
 }
 
-/* LEFT HILL */
-
 .hill-1 {
-
-  width: 250px;
-  height: 250px;
-
-  background: #fff;
-
+  width: 420px;
+  height: 420px;
+  background: #f6e2a6;
   border-top:
-    10px solid #D9AF64;
-
+    12px solid #d9af64;
   border-right:
-    10px solid #D9AF64;
-
+    12px solid #d9af64;
   border-radius:
-    0 250px 0 0;
+    0 420px 0 0;
 }
-
-/* RIGHT HILL */
 
 .hill-2 {
-
   right: 0;
-
-  width: 250px;
-  height: 250px;
-
-  background: #ffc966;
-
+  width: 420px;
+  height: 420px;
+  background: #edc967;
   border-top:
-    10px solid #D9AF64;
-
+    12px solid #d9af64;
   border-left:
-    10px solid #D9AF64;
-
+    12px solid #d9af64;
   border-radius:
-    250px 0 0 0;
+    420px 0 0 0;
 }
 
-/* CENTER HILL */
-
 .hill-3 {
-
-  left: 200px;
-
-  width: 400px;
-  height: 180px;
-
-  background: #D7000F;
-
+  width: 700px;
+  height: 280px;
+  background: #b22222;
   border-top:
-    10px solid #D9AF64;
-
+    12px solid #d9af64;
   border-radius:
-    400px 400px 0 0;
+    700px 700px 0 0;
+}
+
+.game-container::-webkit-scrollbar {
+  width: 10px;
+}
+
+.game-container::-webkit-scrollbar-track {
+  background: #f3deb0;
+}
+
+.game-container::-webkit-scrollbar-thumb {
+  background: #b8860b;
+  border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+
+  .card {
+    width: 95vw;
+    height: 95vh;
+  }
+
+  .game-container {
+    width: 55%;
+    height: 68%;
+  }
+
+  #text {
+    font-size: 18px;
+  }
+
+  .btn {
+    font-size: 18px;
+    padding: 14px;
+  }
+
+  .card-title {
+    font-size: 60px;
+    letter-spacing: 14px;
+  }
 }
 
 </style>
-
 </head>
 
 <body>
 
 <div class="card">
 
-  <!-- TITLE -->
+<div class="card-title">
+TẾT<br>FESTIVAL
+</div>
 
-  <div class="card-title">
-    TẾT<br>FESTIVAL
-  </div>
+<div class="card-seal"></div>
 
-  <!-- FORM WINDOW -->
+<div class="card-flower-1">
+<div class="card-flower-petal petal-1"></div>
+<div class="card-flower-petal petal-2"></div>
+<div class="card-flower-petal petal-3"></div>
+<div class="card-flower-petal petal-4"></div>
+<div class="card-flower-petal petal-5"></div>
 
-  <div class="game-container">
+<div class="card-flower-pollen pollen-1"></div>
+<div class="card-flower-pollen pollen-2"></div>
+<div class="card-flower-pollen pollen-3"></div>
+<div class="card-flower-pollen pollen-4"></div>
+<div class="card-flower-pollen pollen-5"></div>
+</div>
 
-    <iframe
-      class="volunteer-form"
-      src="https://docs.google.com/forms/d/e/1FAIpQLSeB_ddcjMdQD_f3B6Ppq0FNEjk0cdlVDgiS4ubjn2orNeIjUg/viewform?usp=header"
-    >
-    </iframe>
+<div class="card-flower-2">
+<div class="card-flower-petal petal-1"></div>
+<div class="card-flower-petal petal-2"></div>
+<div class="card-flower-petal petal-3"></div>
+<div class="card-flower-petal petal-4"></div>
+<div class="card-flower-petal petal-5"></div>
 
-  </div>
+<div class="card-flower-pollen pollen-1"></div>
+<div class="card-flower-pollen pollen-2"></div>
+<div class="card-flower-pollen pollen-3"></div>
+<div class="card-flower-pollen pollen-4"></div>
+<div class="card-flower-pollen pollen-5"></div>
+</div>
 
-  <!-- HILLS -->
+<div class="game-container">
 
-  <div class="card-hill hill-1"></div>
-  <div class="card-hill hill-2"></div>
-  <div class="card-hill hill-3"></div>
+<div id="text">
+
+<h1>Tết at Trăng Hy Vọng</h1>
+
+<p>
+Thank you for playing the Lunar New Years escape room.
+</p>
+
+<p>
+Click below to complete the official Google Form.
+</p>
+
+<a
+class="form-button"
+href="https://docs.google.com/forms/d/e/1FAIpQLSeB_ddcjMdQD_f3B6Ppq0FNEjk0cdlVDgiS4ubjn2orNeIjUg/viewform?usp=header"
+target="_blank"
+>
+Open Google Form
+</a>
 
 </div>
+
+</div>
+
+<div class="card-hill hill-1"></div>
+<div class="card-hill hill-2"></div>
+<div class="card-hill hill-3"></div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+
+// 定义获取年份生肖函数
+function getAnimal(year){
+    if(year<0){
+        alert("当前年份有误");
+        return false;
+    }
+
+    var animals=["猴","鸡","狗","猪","鼠","牛","虎","兔","龙","蛇","马","羊"];
+
+    var index=year%12;
+
+    return animals[index];
+}
+
+// 定义获取当前年份函数
+var thisYear;
+
+function getThisYear(){
+
+    $.ajax(
+        {
+            url:"https://quan.suning.com/getSysTime.do",
+            async:false,
+            success:function(result){
+                thisYear=result;
+            }
+        }
+    )
+
+    return JSON.parse(thisYear).sysTime2.split("-")[0];
+}
+
+// 根据十二生肖年定位图片
+function getImage(animal){
+
+    var item={
+        "猴":"100% 66.6%",
+        "鸡":"0% 99.9%",
+        "狗":"50% 99.9%",
+        "猪":"100% 99.9%",
+        "鼠":"0% 0%",
+        "牛":"50% 0%",
+        "虎":"100% 0",
+        "兔":"0% 33.3%",
+        "龙":"50% 33.3%",
+        "蛇":"100% 33.3%",
+        "马":"0% 66.6%",
+        "羊":"50% 66.6%"
+    };
+
+    return (item[animal] ? item[animal] : "");
+}
+
+// 设置图片位置
+function setPosition(){
+
+    var position=getImage(getAnimal(getThisYear()));
+
+    var cardSeal=document.getElementsByClassName("card-seal");
+
+    cardSeal[0].style.backgroundPosition=position;
+}
+
+setPosition();
+
+</script>
 
 </body>
 </html>
