@@ -11,14 +11,14 @@ body {
   justify-content: center;
   align-items: center;
 
- background:
-  linear-gradient(
-    135deg,
-    #fff8dc,
-    #fdee83,
-    #d9af64,
-    #b8860b
-  );
+  background:
+    linear-gradient(
+      135deg,
+      #fff8dc,
+      #fdee83,
+      #d9af64,
+      #b8860b
+    );
 
   overflow: hidden;
 
@@ -42,11 +42,11 @@ body {
   max-height: 95vh;
 
   border:
-    14px solid #d7000f;
+    14px solid #b22222;
 
   filter:
     drop-shadow(
-      6px 6px 12px black
+      6px 6px 18px rgba(0,0,0,0.25)
     );
 
   position: relative;
@@ -54,8 +54,8 @@ body {
   background:
     linear-gradient(
       45deg,
-      #fdee83,
-      #fefcea
+      #fff9d9,
+      #f7e3a1
     );
 }
 
@@ -78,9 +78,12 @@ body {
 
   writing-mode: vertical-rl;
 
-  color: #d7000f;
+  color: #b22222;
 
   z-index: 5;
+
+  text-shadow:
+    2px 2px 4px rgba(0,0,0,0.12);
 }
 
 /* SEAL */
@@ -98,13 +101,16 @@ body {
   background:
     radial-gradient(
       circle,
-      #d7000f,
-      #8b0000
+      #c1121f,
+      #7f0000
     );
 
   border-radius: 50%;
 
-  opacity: 0.7;
+  opacity: 0.75;
+
+  box-shadow:
+    0 0 18px rgba(0,0,0,0.2);
 }
 
 /* FLOWERS */
@@ -120,8 +126,8 @@ body {
 
   background:
     linear-gradient(
-      #DF4554,
-      #E16561
+      #df4554,
+      #e16561
     );
 }
 
@@ -159,7 +165,7 @@ body {
 
   border-radius: 50%;
 
-  background: #fdee83;
+  background: #ffe27a;
 }
 
 .pollen-1 {
@@ -224,25 +230,27 @@ body {
   overflow-y: auto;
 
   background:
-    rgba(0,0,0,0.82);
+    rgba(255,248,220,0.96);
 
   border:
-    4px solid #d7000f;
+    4px solid #d9af64;
 
   padding: 28px;
 
   box-sizing: border-box;
 
-  color: white;
+  color: #5c1a1b;
 
   z-index: 10;
 
   box-shadow:
-    0 0 25px black;
+    0 0 20px rgba(0,0,0,0.15);
 
   font-family:
-    "Lucida Console",
-    monospace;
+    "Georgia",
+    serif;
+
+  backdrop-filter: blur(2px);
 }
 
 /* TEXT */
@@ -255,7 +263,7 @@ body {
 
   font-size: 24px;
 
-  color: #5c1a1b;
+  color: #4a1b12;
 
   margin-bottom: 28px;
 }
@@ -291,6 +299,11 @@ body {
     serif;
 
   font-size: 22px;
+
+  border-radius: 8px;
+
+  box-shadow:
+    0 3px 8px rgba(0,0,0,0.15);
 }
 
 .btn:hover {
@@ -319,10 +332,10 @@ body {
   background: #f6e2a6;
 
   border-top:
-    12px solid #D9AF64;
+    12px solid #d9af64;
 
   border-right:
-    12px solid #D9AF64;
+    12px solid #d9af64;
 
   border-radius:
     0 420px 0 0;
@@ -338,10 +351,10 @@ body {
   background: #edc967;
 
   border-top:
-    12px solid #D9AF64;
+    12px solid #d9af64;
 
   border-left:
-    12px solid #D9AF64;
+    12px solid #d9af64;
 
   border-radius:
     420px 0 0 0;
@@ -355,13 +368,18 @@ body {
   background: #b22222;
 
   border-top:
-    12px solid #D9AF64;
+    12px solid #d9af64;
 
   border-radius:
     700px 700px 0 0;
 }
 
 /* SCROLLBAR */
+
+.game-container::-webkit-scrollbar {
+
+  width: 10px;
+}
 
 .game-container::-webkit-scrollbar-track {
 
@@ -387,35 +405,25 @@ body {
 
   .game-container {
 
-  position: absolute;
+    width: 55%;
+    height: 68%;
+  }
 
-  top: 70px;
-  left: 40px;
+  #text {
 
-  width: 420px;
-  height: 700px;
+    font-size: 18px;
+  }
 
-  overflow-y: auto;
+  .btn {
 
-  background:
-    rgba(255,248,220,0.94);
+    font-size: 18px;
+    padding: 14px;
+  }
 
-  border:
-    4px solid #d9af64;
+  .card-title {
 
-  padding: 28px;
+    font-size: 60px;
 
-  box-sizing: border-box;
-
-  color: #5c1a1b;
-
-  z-index: 10;
-
-  box-shadow:
-    0 0 20px rgba(0,0,0,0.18);
-
-  font-family:
-    "Georgia",
-    serif;
-}
+    letter-spacing: 14px;
+  }
 }
