@@ -51,7 +51,7 @@
   <div class="card-hill hill-3"></div>
 
 </div>
-  
+
 <script>
 
 const textElement =
@@ -60,23 +60,23 @@ const textElement =
 const optionButtonsElement =
   document.getElementById('option-buttons')
 
-const gameContainer =
-  document.querySelector('.game-container')
+const hintElement =
+  document.getElementById('hint')
 
 let state = {}
 
-let currentTextNodeId = 1
+let previousNodeId = null
 
 function startGame() {
 
   state = {}
 
+  previousNodeId = null
+
   showTextNode(1)
 }
 
 function showTextNode(textNodeIndex) {
-
-  currentTextNodeId = textNodeIndex
 
   const textNode =
     textNodes.find(
@@ -87,7 +87,7 @@ function showTextNode(textNodeIndex) {
   textElement.innerHTML =
     textNode.text
 
-  gameContainer.scrollTop = 0
+  hintElement.innerHTML = ''
 
   while (
     optionButtonsElement.firstChild
@@ -100,67 +100,52 @@ function showTextNode(textNodeIndex) {
 
   textNode.options.forEach(option => {
 
-    if (showOption(option)) {
+    const button =
+      document.createElement('button')
 
-      const button =
-        document.createElement('button')
+    button.innerText =
+      option.text
 
-      button.innerText =
-        option.text
+    button.classList.add('btn')
 
-      button.classList.add('btn')
+    button.addEventListener(
+      'click',
+      () => selectOption(option, textNode.id)
+    )
 
-      button.addEventListener(
-        'click',
-        () => selectOption(option)
-      )
-
-      optionButtonsElement.appendChild(button)
-    }
+    optionButtonsElement.appendChild(button)
 
   })
 }
 
-function showOption(option) {
-
-  return (
-    option.requiredState == null ||
-    option.requiredState(state)
-  )
-}
-
-function selectOption(option) {
+function selectOption(option, currentNodeId) {
 
   /*
-  WRONG ANSWERS
+    WRONG ANSWER SYSTEM
+    Later you can add:
+
+    wrong: true,
+    hint: 'Try looking at the haiku again.'
+
   */
 
   if (option.wrong) {
 
-    alert(option.hint)
+    hintElement.innerHTML =
+      option.hint
 
-    showTextNode(currentTextNodeId)
+    showTextNode(currentNodeId)
 
     return
   }
 
-  /*
-  NORMAL ANSWERS
-  */
+  previousNodeId = currentNodeId
 
-  const nextTextNodeId =
-    option.nextText
-
-  if (nextTextNodeId <= 0) {
+  if (option.nextText <= 0) {
     return startGame()
   }
 
-  state = Object.assign(
-    state,
-    option.setState
-  )
-
-  showTextNode(nextTextNodeId)
+  showTextNode(option.nextText)
 }
 
 const textNodes = [
@@ -200,8 +185,6 @@ PART 1
 
   text:
 `<h2>Part 1: Festival Food</h2>
-
-<h3>Section 1</h3>
 
 When you arrive at the local park, things are in full swing. Vendors line the main walkway with all kinds of Vietnamese foods — crackling egg rolls, rice paper dipped in bowls of water and rolled around pork and lettuce and noodles, steaming vats of red and clear broths, and creamy spreads on pate on bánh mì— while Lion Dancer drums beat off in the distance. There’s a cool breeze in the air, stirring the silk hem of your silk pants and pulling you back to a weekend twenty years ago, when you stood here for the first time.
 
@@ -261,9 +244,7 @@ SECTION 2 + 3
   id: 3,
 
   text:
-`<h3>Section 2</h3>
-
-An elderly man is standing at his skillet, a thin layer of rice pancake sizzling with smoke for bánh xèo, which you know is Hoa’s favorite. He smiles at her as you order a pork and shrimp and his face looks vaguely familiar, but before you can place it Hoa is pointing to a sign on his stall.
+`An elderly man is standing at his skillet, a thin layer of rice pancake sizzling with smoke for bánh xèo, which you know is Hoa’s favorite. He smiles at her as you order a pork and shrimp and his face looks vaguely familiar, but before you can place it Hoa is pointing to a sign on his stall.
 
 “What does this say…” She asks, squinting at the sign. The man’s name is written on top. “Ông Minh?” You translate for her.
 
@@ -475,7 +456,7 @@ Puzzle #4: Use the water buffalo statue (attached in DLR) to find out why it’s
 },
 
 /* ======================================================
-SECTION 6
+ 6
 ====================================================== */
 
 {
@@ -511,7 +492,7 @@ You look at Hoa, her face set in a wordless declaration. You know for her sake, 
 },
 
 /* ======================================================
-SECTION 7
+ 7
 ====================================================== */
 
 {
@@ -577,14 +558,14 @@ Puzzle #5: use the Pigpen Cipher attached below to know which organizations you 
 },
 
 /* ======================================================
-SECTION 8
+ 8
 ====================================================== */
 
 {
   id: 8,
 
   text:
-`<h3>Section 8</h3>
+`<h3> 8</h3>
 
 As you and Hoa sit on the grass, you unwrap the snacks for the picnic. You’d made some catfish spring rolls at home, packed with mint and noodles and crunchy lettuce. There are colorful arrays of bánh bò hấp and green jelly thạch rau câu lá dứa. But you save the centerpiece of your mini-picnic for last, unwrapping it from bright red tissue paper to hear Hoa squeal in delight.
 
@@ -640,9 +621,7 @@ SECTION 9
   id: 9,
 
   text:
-`<h3>Section 9</h3>
-
-“Moon cakes??”
+`“Moon cakes??”
 
 “I made your favorite. Red bean paste!”
 
@@ -688,9 +667,7 @@ SECTION 10
   id: 10,
 
   text:
-`<h3>Section 10</h3>
-
-By the time the lion dancers have curled away for the evening, their drums only distant heartbeats to keep the night alive, the sun has set. A light breeze whistles through the trees, stirring your silk tunic to flap with the branches like a flag. A full moon is climbing across the night sky, soft beams of blue light sluicing across the sparkly red, yellow, and black fur of the lion dancers.
+`By the time the lion dancers have curled away for the evening, their drums only distant heartbeats to keep the night alive, the sun has set. A light breeze whistles through the trees, stirring your silk tunic to flap with the branches like a flag. A full moon is climbing across the night sky, soft beams of blue light sluicing across the sparkly red, yellow, and black fur of the lion dancers.
 
 Hoa asks you, “Are you really going to join the park group? Because I think you should.”
 
