@@ -1,3 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<title>Tết Festival Volunteer Form</title>
+
+<link
+  rel="preconnect"
+  href="https://fonts.googleapis.com"
+>
+
+<link
+  rel="preconnect"
+  href="https://fonts.gstatic.com"
+  crossorigin
+>
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Zhi+Mang+Xing&display=swap"
+  rel="stylesheet"
+>
+
+<style>
+
 html,
 body {
 
@@ -215,7 +247,7 @@ body {
     scale(1.1);
 }
 
-/* GAME WINDOW */
+/* FORM WINDOW */
 
 .game-container {
 
@@ -227,7 +259,7 @@ body {
   width: 420px;
   height: 700px;
 
-  overflow-y: auto;
+  overflow: hidden;
 
   background:
     rgba(255,248,220,0.96);
@@ -235,137 +267,26 @@ body {
   border:
     4px solid #d9af64;
 
-  padding: 28px;
-
   box-sizing: border-box;
-
-  color: #5c1a1b;
 
   z-index: 10;
 
   box-shadow:
     0 0 20px rgba(0,0,0,0.15);
 
-  font-family:
-    "Georgia",
-    serif;
-
   backdrop-filter: blur(2px);
 }
 
-/* TEXT */
+/* GOOGLE FORM */
 
-/* STORY TEXT */
+.volunteer-form {
 
-#text {
+  width: 100%;
+  height: 100%;
 
-  white-space: pre-line;
+  border: none;
 
-  line-height: 1.8;
-
-  font-size: 15px;
-
-  margin-bottom: 30px;
-}
-
-/* TEXT STYLES */
-
-#text h1 {
-
-  color: #fdee83;
-
-  font-size: 34px;
-
-  margin-bottom: 20px;
-
-  border-bottom: 3px solid #d7000f;
-
-  padding-bottom: 10px;
-
-  text-shadow: 0 0 10px black;
-}
-
-#text h2 {
-
-  color: #ffcc66;
-
-  font-size: 26px;
-
-  margin-top: 25px;
-
-  margin-bottom: 15px;
-
-  text-shadow: 0 0 8px black;
-}
-
-#text h3 {
-
-  color: #ffd98a;
-
-  font-size: 20px;
-
-  margin-top: 18px;
-
-  margin-bottom: 10px;
-}
-
-#text strong {
-
-  color: #fff3b0;
-}
-
-#text em {
-
-  color: #ffcc99;
-
-  font-style: italic;
-}
-
-/* BUTTONS */
-
-.btn-grid {
-
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 18px;
-}
-
-.btn {
-
-  background: #d9af64;
-
-  border:
-    2px solid #8b0000;
-
-  padding: 18px;
-
-  color: #5c1a1b;
-
-  cursor: pointer;
-
-  transition: 0.3s;
-
-  font-family:
-    "Georgia",
-    serif;
-
-  font-size: 22px;
-
-  border-radius: 8px;
-
-  box-shadow:
-    0 3px 8px rgba(0,0,0,0.15);
-}
-
-.btn:hover {
-
-  background: #8b0000;
-
-  color: #fff8dc;
-
-  transform: scale(1.03);
+  background: white;
 }
 
 /* HILLS */
@@ -427,25 +348,6 @@ body {
     700px 700px 0 0;
 }
 
-/* SCROLLBAR */
-
-.game-container::-webkit-scrollbar {
-
-  width: 10px;
-}
-
-.game-container::-webkit-scrollbar-track {
-
-  background: #f3deb0;
-}
-
-.game-container::-webkit-scrollbar-thumb {
-
-  background: #b8860b;
-
-  border-radius: 10px;
-}
-
 /* MOBILE */
 
 @media (max-width: 768px) {
@@ -462,17 +364,6 @@ body {
     height: 68%;
   }
 
-  #text {
-
-    font-size: 18px;
-  }
-
-  .btn {
-
-    font-size: 18px;
-    padding: 14px;
-  }
-
   .card-title {
 
     font-size: 60px;
@@ -480,3 +371,80 @@ body {
     letter-spacing: 14px;
   }
 }
+
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+  <!-- TITLE -->
+
+  <div class="card-title">
+    TẾT<br>FESTIVAL
+  </div>
+
+  <!-- SEAL -->
+
+  <div class="card-seal"></div>
+
+  <!-- FLOWER 1 -->
+
+  <div class="card-flower-1">
+
+    <div class="card-flower-petal petal-1"></div>
+    <div class="card-flower-petal petal-2"></div>
+    <div class="card-flower-petal petal-3"></div>
+    <div class="card-flower-petal petal-4"></div>
+    <div class="card-flower-petal petal-5"></div>
+
+    <div class="card-flower-pollen pollen-1"></div>
+    <div class="card-flower-pollen pollen-2"></div>
+    <div class="card-flower-pollen pollen-3"></div>
+    <div class="card-flower-pollen pollen-4"></div>
+    <div class="card-flower-pollen pollen-5"></div>
+
+  </div>
+
+  <!-- FLOWER 2 -->
+
+  <div class="card-flower-2">
+
+    <div class="card-flower-petal petal-1"></div>
+    <div class="card-flower-petal petal-2"></div>
+    <div class="card-flower-petal petal-3"></div>
+    <div class="card-flower-petal petal-4"></div>
+    <div class="card-flower-petal petal-5"></div>
+
+    <div class="card-flower-pollen pollen-1"></div>
+    <div class="card-flower-pollen pollen-2"></div>
+    <div class="card-flower-pollen pollen-3"></div>
+    <div class="card-flower-pollen pollen-4"></div>
+    <div class="card-flower-pollen pollen-5"></div>
+
+  </div>
+
+  <!-- FORM WINDOW -->
+
+  <div class="game-container">
+
+    <iframe
+      class="volunteer-form"
+      src="https://docs.google.com/forms/d/e/1FAIpQLSeB_ddcjMdQD_f3B6Ppq0FNEjk0cdlVDgiS4ubjn2orNeIjUg/viewform?usp=header"
+    >
+    </iframe>
+
+  </div>
+
+  <!-- HILLS -->
+
+  <div class="card-hill hill-1"></div>
+  <div class="card-hill hill-2"></div>
+  <div class="card-hill hill-3"></div>
+
+</div>
+
+</body>
+</html>
