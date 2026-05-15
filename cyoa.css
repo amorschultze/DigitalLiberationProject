@@ -11,12 +11,14 @@ body {
   justify-content: center;
   align-items: center;
 
-  background:
-    radial-gradient(
-      circle,
-      #2a0000,
-      #000
-    );
+ background:
+  linear-gradient(
+    135deg,
+    #fff8dc,
+    #fdee83,
+    #d9af64,
+    #b8860b
+  );
 
   overflow: hidden;
 
