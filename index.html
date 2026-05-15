@@ -10,12 +10,200 @@
   content="width=device-width, initial-scale=1.0"
 >
 
-<title>Tết at Trăng Hy Vọng</title>
+<title>Trăng Hy Vọng Volunteer Form</title>
 
-<link
-  rel="stylesheet"
-  href="cyoa.css"
->
+<style>
+
+/* PAGE */
+
+html,
+body {
+
+  height: 100%;
+
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  background:
+    radial-gradient(
+      circle,
+      #1a0000,
+      #000000
+    );
+
+  font-family:
+    "Lucida Console",
+    monospace;
+
+  overflow: hidden;
+}
+
+/* MAIN CARD */
+
+.card {
+
+  position: relative;
+
+  width: 900px;
+  height: 650px;
+
+  overflow: hidden;
+
+  border: 10px solid #d7000f;
+
+  background:
+    linear-gradient(
+      45deg,
+      #fdee83,
+      #fefcea
+    );
+
+  box-shadow:
+    0 0 25px black;
+
+  filter:
+    drop-shadow(
+      0 0 20px black
+    );
+}
+
+/* TITLE */
+
+.card-title {
+
+  position: absolute;
+
+  top: 20px;
+  right: 20px;
+
+  writing-mode: vertical-rl;
+
+  font-size: 40px;
+
+  letter-spacing: 10px;
+
+  color: #d7000f;
+
+  opacity: 0.85;
+
+  z-index: 2;
+}
+
+/* FORM CONTAINER */
+
+.game-container {
+
+  position: absolute;
+
+  top: 40px;
+  left: 40px;
+
+  width: 560px;
+  height: 500px;
+
+  overflow: hidden;
+
+  background:
+    rgba(0,0,0,0.82);
+
+  border:
+    3px solid #d7000f;
+
+  padding: 0;
+
+  box-sizing: border-box;
+
+  z-index: 5;
+
+  box-shadow:
+    0 0 15px black;
+}
+
+/* GOOGLE FORM */
+
+.volunteer-form {
+
+  width: 100%;
+  height: 100%;
+
+  border: none;
+
+  background: white;
+}
+
+/* DECORATIVE HILLS */
+
+.card-hill {
+
+  position: absolute;
+
+  bottom: 0;
+}
+
+/* LEFT HILL */
+
+.hill-1 {
+
+  width: 250px;
+  height: 250px;
+
+  background: #fff;
+
+  border-top:
+    10px solid #D9AF64;
+
+  border-right:
+    10px solid #D9AF64;
+
+  border-radius:
+    0 250px 0 0;
+}
+
+/* RIGHT HILL */
+
+.hill-2 {
+
+  right: 0;
+
+  width: 250px;
+  height: 250px;
+
+  background: #ffc966;
+
+  border-top:
+    10px solid #D9AF64;
+
+  border-left:
+    10px solid #D9AF64;
+
+  border-radius:
+    250px 0 0 0;
+}
+
+/* CENTER HILL */
+
+.hill-3 {
+
+  left: 200px;
+
+  width: 400px;
+  height: 180px;
+
+  background: #D7000F;
+
+  border-top:
+    10px solid #D9AF64;
+
+  border-radius:
+    400px 400px 0 0;
+}
+
+</style>
 
 </head>
 
@@ -29,18 +217,15 @@
     TẾT<br>FESTIVAL
   </div>
 
-  <!-- GAME WINDOW -->
+  <!-- FORM WINDOW -->
 
   <div class="game-container">
 
-    <div id="text"></div>
-
-    <div id="hint"></div>
-
-    <div
-      id="option-buttons"
-      class="btn-grid"
-    ></div>
+    <iframe
+      class="volunteer-form"
+      src="https://docs.google.com/forms/d/e/1FAIpQLSeB_ddcjMdQD_f3B6Ppq0FNEjk0cdlVDgiS4ubjn2orNeIjUg/viewform?usp=header"
+    >
+    </iframe>
 
   </div>
 
@@ -51,681 +236,6 @@
   <div class="card-hill hill-3"></div>
 
 </div>
-
-<script>
-
-const textElement =
-  document.getElementById('text')
-
-const optionButtonsElement =
-  document.getElementById('option-buttons')
-
-const hintElement =
-  document.getElementById('hint')
-
-let state = {}
-
-let previousNodeId = null
-
-function startGame() {
-
-  state = {}
-
-  previousNodeId = null
-
-  showTextNode(1)
-}
-
-function showTextNode(textNodeIndex) {
-
-  const textNode =
-    textNodes.find(
-      textNode =>
-        textNode.id === textNodeIndex
-    )
-
-  textElement.innerHTML =
-    textNode.text
-
-  hintElement.innerHTML = ''
-
-  while (
-    optionButtonsElement.firstChild
-  ) {
-
-    optionButtonsElement.removeChild(
-      optionButtonsElement.firstChild
-    )
-  }
-
-  textNode.options.forEach(option => {
-
-    const button =
-      document.createElement('button')
-
-    button.innerText =
-      option.text
-
-    button.classList.add('btn')
-
-    button.addEventListener(
-      'click',
-      () => selectOption(option, textNode.id)
-    )
-
-    optionButtonsElement.appendChild(button)
-
-  })
-}
-
-function selectOption(option, currentNodeId) {
-
-  /*
-    WRONG ANSWER SYSTEM
-    Later you can add:
-
-    wrong: true,
-    hint: 'Try looking at the haiku again.'
-
-  */
-
-  if (option.wrong) {
-
-    hintElement.innerHTML =
-      option.hint
-
-    showTextNode(currentNodeId)
-
-    return
-  }
-
-  previousNodeId = currentNodeId
-
-  if (option.nextText <= 0) {
-    return startGame()
-  }
-
-  showTextNode(option.nextText)
-}
-
-const textNodes = [
-
-/* ======================================================
-INTRODUCTION
-====================================================== */
-
-{
-  id: 1,
-
-  text:
-`<h2>Introduction</h2>
-
-Today, you’ll be visiting the local Trăng Hy Vọng park with your seven-year-old niece, Hoa. You’ve been looking forward to this for weeks, and have planned out the perfect day with her: today it’ll be hosting its 30th Vietnamese Tết festival to celebrate Lunar New Years! You’ve planned a visit to the food stalls, a trip through the lotus gardens, and a small picnic at the duck pond to watch the Lion dances.
-
-Are you excited for this visit? Keep going to see what happens next!
-
-PS. I encourage you to look up some of these terms to discover new foods, clothing items, and plants! It may also help to have a piece of paper and pen at the ready. Good luck!`,
-
-  options: [
-
-    {
-      text: 'Begin the Festival!',
-      nextText: 2
-    }
-
-  ]
-},
-
-/* ======================================================
-PART 1
-====================================================== */
-
-{
-  id: 2,
-
-  text:
-`<h2>Part 1: Festival Food</h2>
-
-When you arrive at the local park, things are in full swing. Vendors line the main walkway with all kinds of Vietnamese foods — crackling egg rolls, rice paper dipped in bowls of water and rolled around pork and lettuce and noodles, steaming vats of red and clear broths, and creamy spreads on pate on bánh mì— while Lion Dancer drums beat off in the distance. There’s a cool breeze in the air, stirring the silk hem of your silk pants and pulling you back to a weekend twenty years ago, when you stood here for the first time.
-
-You were six years old, and this was the tenth annual Tết festival of Trăng Hy Vọng. You remember licking sticky rice off your fingers, biting into a chunk of spongy, brown bánh bò nướng to reveal the bright green color of its interior, slotting a shiny, red envelope into the mouth of a Lion dancer.
-
-Hoa bounces up and down in her pink áo dài and khăn đóng, eyes sparkling as she strides through the stalls. You break from your reverie to follow after her, where she takes her time examining the bowls of milky chè thái and simmering pots of phở before finally finding one she likes, her small hand dragging you to the stall. Although you’ve brought some snacks for the picnic later, you know Hoa’s been excited about trying the festival food as her main dish.
-
-<h3>Puzzle #1:</h3> What does Hoa order? Decipher this haiku to find out:
-
-Rice crepes on skillets
-Sizzles with turmeric scents
-Prawns, pork, and bean sprouts`,
-
-  options: [
-
-    {
-      text: 'Bún Bò Huế',
-      wrong: true,
-      hint:
-      'Hint: The haiku describes a crispy rice pancake cooked on a skillet.'
-    },
-
-    {
-      text: 'Bánh Tráng Nướng',
-      wrong: true,
-      hint:
-      'Hint: Think of turmeric batter and sizzling oil.'
-    },
-
-    {
-      text: 'Bánh Mì',
-      wrong: true,
-      hint:
-      'Hint: This food is folded like a crepe.'
-    },
-
-    {
-      text: 'Bánh Xèo',
-      nextText: 3
-    },
-
-    {
-      text: 'Bún Thịt Nướng',
-      wrong: true,
-      hint:
-      'Hint: This dish is not noodle-based.'
-    }
-
-  ]
-},
-
-/* ======================================================
-SECTION 2 + 3
-====================================================== */
-
-{
-  id: 3,
-
-  text:
-`An elderly man is standing at his skillet, a thin layer of rice pancake sizzling with smoke for bánh xèo, which you know is Hoa’s favorite. He smiles at her as you order a pork and shrimp and his face looks vaguely familiar, but before you can place it Hoa is pointing to a sign on his stall.
-
-“What does this say…” She asks, squinting at the sign. The man’s name is written on top. “Ông Minh?” You translate for her.
-
-“That’s our code to support the park,” he responds in Vietnamese.
-
-Hoa can’t speak much, but she can understand it. You and her exchange a confused glance. “What do you mean?”
-
-“There are plans to have it demolished for a hotel.”
-
-“Demolished? But this park’s been here for fifty years. We even have the Saigon Wishing Fountain.”
-
-“I know,” the man said sadly, his eyes fixed in the distance. “I remember when they built this park. I had just immigrated to the US, and in two years I was running my stall here.”
-
-
-
-“Wait!” You exclaim, and both Hoa and the man look up in alarm. “That’s where I recognize you. I used to come here as a kid!”
-
-The man smiles. “If I’m being honest, most vendors here have restaurants in the area. But without this park, I don’t have the permits to run my stall anywhere else. I’ve been here for so long, it’d be like losing another home to me.”
-
-You look at Hoa, whose face is puckered and drawn in. “That’s not fair!” She finally says.
-
-“Sometimes that’s the way life is.” When Minh notices Hoa’s teary face, he adds, “But that’s what the code is for. All the vendors have one. We come together to keep our park.”
-
-You turn to Hoa. “You see? It’s not gone yet, we still have a chance. So don’t worry.”
-
-“I’m not worried,” Hoa sniffles, before turning her bright eyes onto Minh. “Can you tell Ông Minh? This park is gonna be here until I’m as old as him.”
-
-<h3>Puzzle #2:</h3> unscramble the letters on this flyer (linked on the actually finished DLR) to spell out the name of the organization.`,
-
-  options: [
-
-    {
-      text: 'People of Saigon',
-      nextText: 4
-    },
-
-    {
-      text: 'Trăng Hy Vọng Organization',
-      wrong: true,
-      hint:
-      'Hint: Check the flyer again. What would these people like to call themselves?'
-    },
-
-    {
-      text: 'Vietnamese People of Orange County',
-      wrong: true,
-      hint:
-      'Hint: Check the flyer again. What would these people like to call themselves?'
-    },
-
-    {
-      text: 'Settlers of a New Moon',
-      wrong: true,
-      hint:
-      'Hint: Check the flyer again. What would these people like to call themselves?'
-    }
-
-  ]
-},
-
-/* ======================================================
-LOTUS GARDEN
-====================================================== */
-
-{
-  id: 4,
-
-  text:
-`You and Hoa thank the man and begin taking a leisurely stroll towards the lotus gardens.
-
-Fun Fact: Bún riêu is a popular Vietnamese soup using a tomato and crab stock, rice, vermicelli noodles, tofu and/or pork, spare ribs, and herbaceous garnishes like cilantro or bean sprouts. The riêu is a mixture of ground pork, crab meat, eggs, and seasonings, creating a creamy, savory “cake” or seafood balls to add to the broth for a punch of umami.
-
-<h2>Part 2: Lotus Garden</h2>
-
-“That’ll be $7 dollars, sir, and $3 for the little one.”
-
-“Oh!” You fumble in your pocket. “Sorry, I thought the tickets were free. Here you go.”
-
-The woman takes the money. “They were, but now… it’s kind of a miracle we got the garden open today. They’re in the process of closing it down, so we need all the help we can get here.”
-
-You and Hoa slowly begin to make your way around the gardens. There are ombre white frangipani, yellow hibiscuses, purple crown flowers and spider lilies and rangoon creepers. There are even flame vines and periwinkles and yellow may flowers. “Wow, they have way more variety than before. I still remember those yellow oleanders you schooled me on.”
-
-You notice that Hoa is quiet as she stares at the flowers. “What’s wrong? I thought you were excited about the Lotus flowers.” You know Hoa has been anticipating seeing the Vietnamese Lotus flowers in bloom ever since she came two years ago, when they were only little buds.
-
-“I am,” she says, but her face is sunken into a frown. “It’s just… this may be my last chance to see them, right?”
-
-<h3>Puzzle #3:</h3> What can you say in response to Hoa’s question? Decode this Vietnamese Lotus folk chant to find out the answer.
-
-Chant:
-“No other spe<b>c</b>ies in the lake can ri<b>v</b>al lotuses
-Green leaves, white bl<b>o</b>ssoms and yellow pistil<b>s</b>
-Yellow p<b>i</b>stils, white blossoms and green leaves
-Never tarnish<b>e</b>d by the dirty mud nearby.”`,
-
-  options: [
-
-    {
-      text:
-      'We can still make our voices be heard, so that we never lose this place.',
-
-      nextText: 5
-    },
-
-    {
-      text:
-      'All life comes to an end. It’s important to cherish what we have here, right now.',
-
-      wrong: true,
-
-      hint:
-      'Hint: Retry the letters that are bolded. This is a little darker than the situation calls for.'
-    },
-
-    {
-      text:
-      'Yeah, you’re probably right. Best to take photos of them while we still can.',
-
-      wrong: true,
-
-      hint:
-      'Hint: Retry the letters that are bolded. We can go for something more optimistic!'
-    },
-
-    {
-      text:
-      'Let’s have a little faith that someone will do something to keep this place running!',
-
-      wrong: true,
-
-      hint:
-      'Hint: Retry the letters that are bolded. This may be a little too passive.'
-    }
-
-  ]
-}
-
-]
-},
-
-/* ======================================================
-SECTION 5
-====================================================== */
-
-{
-  id: 5,
-
-  text:
-`Hoa seems considerate for a moment, but then her face brightens. She nods and grabs you by the hand as she makes her way over to the Lotus pond, with the Saigon Wishing Fountain at the center. A statue of a water buffalo spouts sits at the center, glinting with copper treasures that carry the wishes of a thousand children who have stood before it. In clear, green water, ichors of light dance across the surface’s water lilies.
-
-“The lotuses are huge. They’re so pretty!”
-
-“They really are.” All around the lilies are bright pink petals that fade white into each other’s embrace, kissing the water in ripples. A dragonfly lands on one of the flowers, its armor glimmering with iridescent colors. The dragonfly sways on the flower for a moment before it lifts back into the air just as Hoa holds out her hand. You hear its wings flutter against Hoa’s finger and she gasps.
-
-“Did you know you can make silk from lotuses? Mommy told me about a woman, Phan Thi Thuan, who weaves thread from hundreds of lotus stalks, but they only make super thin threads, like thinner than a strand of hair.”
-
-“Oh yeah?”
-
-“Yeah. And it can only be worn in shady places with a super nice breeze otherwise it gets all smelly and not colorful anymore. But it’s supposed to be really, really soft.”
-
-She smiles and pulls a coppery penny out of her pocket. Cupping it in her hand, she fingers before throwing it in the pond. You know what her wish was.
-
-<h3>Puzzle #4:</h3> Use the water buffalo statue (attached in DLR) to find out why it’s important to Vietnamese culture.`,
-
-  options: [
-
-    {
-      text: 'Pillar of the home',
-
-      wrong: true,
-
-      hint:
-      'Hint: The buffalo represents many things in Vietnamese culture, not just one.'
-    },
-
-    {
-      text: 'Spiritual beliefs',
-
-      wrong: true,
-
-      hint:
-      'Hint: Think broader than religion alone.'
-    },
-
-    {
-      text: 'Legends and myths',
-
-      wrong: true,
-
-      hint:
-      'Hint: The answer combines all of these meanings.'
-    },
-
-    {
-      text: 'Agricultural heritage',
-
-      wrong: true,
-
-      hint:
-      'Hint: Important, but incomplete.'
-    },
-
-    {
-      text: 'All of the above',
-
-      nextText: 6
-    }
-
-  ]
-},
-
-/* ======================================================
- 6
-====================================================== */
-
-{
-  id: 6,
-
-  text:
-`<h2>Part 3: The Lion Dance</h2>
-
-For the final portion of the festival, you and Hoa dash to the duck ponds. “C’mon, hurry up, before all the good seats are gone!” Hoa nearly dives onto the grassy patch in front of a gaggle of ducks, sending them flapping. “Sorry, duckies! Don’t leave!”
-
-You and Hoa finally sit down, settling onto the grass as the late afternoon begins to set in; the sun will probably be going down in an hour. You’re stopped on the grass, however, as a young woman approaches you with a clipboard in hand.
-
-“Hi, my name is Anh. Sorry to bother you but would you be willing to sign this petition? It’s for the Park & Recreations board. They’re meeting at the end of this month to discuss the park demolition, and we really want at least 2,000 signatures before we present at the hearing.”
-
-“I’ll sign it!” Hoa says, abruptly standing and stomping over to the sheet of paper. The woman laughs.
-
-After Hoa finishes adding hearts to her name, you take the pen from her and begin writing. “It’s unbelievable. This park has been here for so long, I can’t even imagine how it could be gone.”
-
-“Me neither. We usually have enough people to support keeping the park. But… haven’t you noticed lately? A lot of local businesses are disappearing.”
-
-You frown as you try to recall it. There have been a lot more Starbucks and white houses on your street, and you can’t believe you haven’t noticed before now. “We used to have more people to speak up in the community, but a lot of people are leaving the area now.”
-
-You look at Hoa, her face set in a wordless declaration. You know for her sake, this place is worth holding onto; worth helping people remember why they should stay for as long as they can.`,
-
-  options: [
-
-    {
-      text: 'Continue',
-      nextText: 7
-    }
-
-  ]
-},
-
-/* ======================================================
- 7
-====================================================== */
-
-{
-  id: 7,
-
-  text:
-`“How close are you guys to your goal?”
-
-“For in-person signings? Only two hundred away. I just wish most older people knew how to sign the online petition, because they’re really the ones who are the most involved.”
-
-“I wanna be involved! I don’t want the park to go anywhere. It should be here forever and ever and ever,” Hoa declares, eyes shining as they turn onto you.
-
-You laugh, your heart softening at her fierceness. You turn to Anh. “You heard the little lady. Any way we can get involved?”
-
-“Well, we have the Trăng Hy Vọng volunteer organization. Lately, we’ve been drafting a petition to designate the park as a historical landmark, but we only just qualified this year. Now, it’s a mad dash for extensions to protect the park while we figure things out, so we need as many hands on deck as we can get.”
-
-“I’d love to get involved in volunteering. What can I do?”
-
-“If you read up on https://www.laconservancy.org/save-places/explore-preservation-resouces/how-to-save-historic-places/, it should give you some ideas on what organizations to reach out to!”
-
-<h3>Puzzle #5:</h3> use the Pigpen Cipher attached below to know which organizations you can reach out to with the volunteer team.`,
-
-  options: [
-
-    {
-      text:
-      'California Environmental Quality Act (CEQA)',
-
-      wrong: true,
-
-      hint:
-      'Hint: Retry the Pigpen Cipher. CEQA may not be the grounds to get this park protected.'
-    },
-
-    {
-      text:
-      'State Office of Historic Preservation',
-
-      nextText: 8
-    },
-
-    {
-      text:
-      'Landmark THIS!',
-
-      wrong: true,
-
-      hint:
-      'Hint: Retry the Pigpen Cipher. This is an iniative rather than an orgganization.'
-    },
-
-    {
-      text:
-      'City’s Cultural Heritage Commission',
-
-      wrong: true,
-
-      hint:
-      'Hint: Retry the Pigpen Cipher. This commission may help protect the park, but not authorize its status.'
-    }
-
-  ]
-},
-
-/* ======================================================
- 8
-====================================================== */
-
-{
-  id: 8,
-
-  text:
-`<h3> 8</h3>
-
-As you and Hoa sit on the grass, you unwrap the snacks for the picnic. You’d made some catfish spring rolls at home, packed with mint and noodles and crunchy lettuce. There are colorful arrays of bánh bò hấp and green jelly thạch rau câu lá dứa. But you save the centerpiece of your mini-picnic for last, unwrapping it from bright red tissue paper to hear Hoa squeal in delight.
-
-<h3>Puzzle #6:</h3> What is she excited about? Use this cipher to figure out the right item.`,
-
-  options: [
-
-    {
-      text:
-      'Bánh Đậu Xanh (Mung Bean Pastry)',
-
-      wrong: true,
-
-      hint:
-      'Hint: Hoa immediately mentions mooncakes afterward.'
-    },
-
-    {
-      text:
-      'Chè Thái (Coconut Milk Fruit Cocktail)',
-
-      wrong: true,
-
-      hint:
-      'Hint: The food is wrapped in red tissue paper.'
-    },
-
-    {
-      text:
-      'Bánh Trung Thu (Red Bean Mooncakes)',
-
-      nextText: 9
-    },
-
-    {
-      text:
-      'Bánh Chưng (Sticky Rice Cake)',
-
-      wrong: true,
-
-      hint:
-      'Hint: Think Mid-Autumn Festival dessert.'
-    }
-
-  ]
-},
-
-/* ======================================================
-SECTION 9
-====================================================== */
-
-{
-  id: 9,
-
-  text:
-`“Moon cakes??”
-
-“I made your favorite. Red bean paste!”
-
-Hoa throws her arms around your neck for a quick hug, but pulls away abruptly. “Wait. Made mooncakes? No way.”
-
-“I know you’ve been begging your dad for months, he won’t stop whining to me about it.”
-
-“And you did it without me?” Hoa whined.
-
-You smile placatingly. It was a messy period of experimenting with lye water and golden syrup, boiling seven batches of red beans and rolling out dough for the intricate molds. “This was the tester batch. Next year, let’s make it together.” Hoa beams at you, just as the sound of drums begin to grow louder all around the duck pond.
-
-“I wish you and the park another amazing year. I wanna do this again with you and mom and dad next time. And make an even more delicious batch of mooncakes.”
-
-You hand Hoa her lì xì, which she stares at for a moment, before breaking off a small chunk of the cake, and throws it into the water where the ducks begin to quack loudly around it.
-
-Lion dancers march up and down the park walkway with the beat of drums stirring their four legs into a dance of the human spirit. Their colorful feet glide across the ground so quickly they almost take flight. You close your eyes and feel the vibrations reverberate in your chest, and know Hoa’s heart is beating in sync with it.
-
-You open your eyes to the loud, rhythmic thumping of wooden drumsticks, a red, furry lion’s face staring back at you. It stares, blinking its ginormous eyes as it begins to rise above you. Its shadow engulfs your face, and once again you feel all of six years old again. Without realizing it, you’re lifting Hoa onto your shoulders, her arms outstretched like wings as a red envelope glints in her hand. You crane to look up as Hoa slots the lì xì into the lion’s mouth, her eyes unblinking and fierce.
-
-The lion bows its head to her before it begins to move forward.
-
-“Why’d you do that, Hoa?” You ask as you lower the girl off your shoulders. “That was for you.”
-
-“I wanted it to be for the park.”
-
-At a momentary loss for words, you finally respond with, “Couldn’t have given it to anything better.”`,
-
-  options: [
-
-    {
-      text: 'Continue',
-      nextText: 10
-    }
-
-  ]
-},
-
-/* ======================================================
-SECTION 10
-====================================================== */
-
-{
-  id: 10,
-
-  text:
-`By the time the lion dancers have curled away for the evening, their drums only distant heartbeats to keep the night alive, the sun has set. A light breeze whistles through the trees, stirring your silk tunic to flap with the branches like a flag. A full moon is climbing across the night sky, soft beams of blue light sluicing across the sparkly red, yellow, and black fur of the lion dancers.
-
-Hoa asks you, “Are you really going to join the park group? Because I think you should.”
-
-You smile broadly at her. “Tell you what. It says on their website their next meeting is in three weeks, and it looks like they have a Youth Leadership section. Can you clear your schedule for that Saturday and we’ll go together?”
-
-Moonlight suffuses across Hoa’s face as a beaming smile crosses it, and she nods enthusiastically. “Let’s do it! Thank you for taking me out today, I can’t wait to celebrate at the park with you again next year. And one more thing!
-
-<h3>Puzzle #7:</h3> What does Hoa say next? Use the code 6-16-42-6 26-42-28-14 28-2-26 26-30-18 to find out!
-
-Spell out the right code below, all lowercase with no punctuation:`,
-
-  options: [
-
-    {
-      text:
-      'chuc mung nam moi',
-
-      nextText: 11
-    }
-
-  ]
-},
-
-/* ======================================================
-SECTION 11 / CONCLUSION
-====================================================== */
-
-{
-  id: 11,
-
-  text:
-`<h2>Conclusion</h2>
-
-“Happy New Year, chúc mừng năm mới!”
-
-“Chúc mừng năm mới, Hoa. Now, let’s go home and dig into that mooncake!”
-
-Thank you for playing the Lunar New Years escape room.
-
-We hope you’ve gained a deeper appreciation of public parks and their role as cultural spaces, especially for immigrant and ethnic communities. Additionally, we hope you learned some things about Vietnamese culture and looked up some of these terms for yourself.
-
-Please continue to support your local parks and advocate for their continued maintenance for your entire community.`,
-
-  options: [
-
-    {
-      text: 'Play Again',
-      nextText: -1
-    }
-
-  ]
-}
-
-]
-
-startGame()
-
-</script>
 
 </body>
 </html>
