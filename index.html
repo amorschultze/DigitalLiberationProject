@@ -192,171 +192,463 @@ function selectOption(option) {
 
 const textNodes = [
 
-  {
-    id: 1,
+{
+  id: 1,
 
-    text:
-`Your name is Private Cooper.
+  text:
+`Introduction
 
-You emerge from your truck and are assaulted with the stench of smoldering flesh and rancid blood.
+Today, you’ll be visiting the local Trăng Hy Vọng park with your seven-year-old niece, Hoa.
 
-A massacre happened here.
+You’ve been looking forward to this for weeks, and have planned out the perfect day with her: today it’ll be hosting its 30th Vietnamese Tết festival to celebrate Lunar New Years!
 
-"We're splitting the forces between truck Alpha and truck Beta."`,
+You’ve planned a visit to the food stalls, a trip through the lotus gardens, and a small picnic at the duck pond to watch the Lion dances.
 
-    options: [
+Are you excited for this visit?
 
-      {
-        text: 'Take Truck Alpha',
-        nextText: 2
-      },
+PS. You may want a piece of paper and pen ready.`,
 
-      {
-        text: 'Take Truck Beta',
-        nextText: 3
-      }
+  options: [
 
-    ]
-  },
+    {
+      text: 'Begin the Festival',
+      nextText: 2
+    }
 
-  {
-    id: 2,
+  ]
+},
 
-    text:
-`Truck Alpha heads directly toward the flesh wall.
+{
+  id: 2,
 
-The soldier beside you looks like he's about to throw up.`,
+  text:
+`Part 1: Festival Food
 
-    options: [
+When you arrive at the local park, things are in full swing.
 
-      {
-        text: '"You okay?"',
-        nextText: 4
-      },
+Vendors line the walkway with crackling egg rolls, steaming broths, bánh mì, and sweet chè thái.
 
-      {
-        text: '"Sorry."',
-        nextText: 5
-      }
+Hoa bounces excitedly beside you in her pink áo dài.
 
-    ]
-  },
+Puzzle #1:
+What does Hoa order?
 
-  {
-    id: 3,
+Rice crepes on skillets
+Sizzles with turmeric scents
+Prawns, pork, and bean sprouts`,
 
-    text:
-`Truck Beta arrives at Hawkins Memorial Hospital.
+  options: [
 
-Two groups split up — one to Floor 2, one to Floor 3.`,
+    {
+      text: 'Bún Bò Huế',
+      nextText: 3
+    },
 
-    options: [
+    {
+      text: 'Bánh Tráng Nướng',
+      nextText: 3
+    },
 
-      {
-        text: 'Go to Floor 2',
-        nextText: 6
-      },
+    {
+      text: 'Bánh Mì',
+      nextText: 3
+    },
 
-      {
-        text: 'Go to Floor 3',
-        nextText: 7
-      }
+    {
+      text: 'Bánh Xèo',
+      nextText: 3
+    },
 
-    ]
-  },
+    {
+      text: 'Bún Thịt Nướng',
+      nextText: 3
+    }
 
-  {
-    id: 4,
+  ]
+},
 
-    text:
-`"If you knock, someone answers the door."`,
+{
+  id: 3,
 
-    options: [
+  text:
+`An elderly man stands over a sizzling skillet making bánh xèo.
 
-      {
-        text: 'CONTINUE',
-        nextText: 8
-      }
+Hoa points at a sign on the stall.
 
-    ]
-  },
+“What does this say?” she asks.
 
-  {
-    id: 5,
+“It’s our code to support the park,” the man says sadly.
 
-    text:
-`"You'd look like this too if you knew what was coming."`,
+“There are plans to demolish it for a hotel.”
 
-    options: [
+You suddenly recognize him from your childhood visits here.`,
 
-      {
-        text: 'CONTINUE',
-        nextText: 8
-      }
+  options: [
 
-    ]
-  },
+    {
+      text: 'Continue',
+      nextText: 4
+    }
 
-  {
-    id: 6,
+  ]
+},
 
-    text:
-`The hospital seems strangely secure.`,
+{
+  id: 4,
 
-    options: [
+  text:
+`“This park has been like a second home to me,” the vendor explains.
 
-      {
-        text: 'Wander the halls',
-        nextText: 9
-      },
+Hoa frowns deeply.
 
-      {
-        text: 'Stay put',
-        nextText: 10
-      }
+“That’s not fair!”
 
-    ]
-  },
+Puzzle #2:
+Unscramble the letters to spell the organization name.`,
 
-  {
-    id: 7,
+  options: [
 
-    text:
-`A terrified candystriper paces the hallway.`,
+    {
+      text: 'People of Saigon',
+      nextText: 5
+    },
 
-    options: [
+    {
+      text: 'Trăng Hy Vọng Organization',
+      nextText: 5
+    },
 
-      {
-        text: 'Talk to her',
-        nextText: 21
-      },
+    {
+      text: 'Vietnamese People of Orange County',
+      nextText: 5
+    },
 
-      {
-        text: 'Ignore her',
-        nextText: 22
-      }
+    {
+      text: 'Settlers of a New Moon',
+      nextText: 5
+    }
 
-    ]
-  },
+  ]
+},
 
-  {
-    id: 8,
+{
+  id: 5,
 
-    text:
-`The monster catches you.
+  text:
+`Part 2: Lotus Garden
 
-YOU DIED.`,
+You and Hoa arrive at the lotus gardens.
 
-    options: [
+White frangipani, yellow hibiscus, crown flowers, spider lilies, and flame vines bloom everywhere.
 
-      {
-        text: 'Restart',
-        nextText: -1
-      }
+Hoa grows quiet.
 
-    ]
-  }
+“This may be my last chance to see the lotuses, right?”`,
 
+  options: [
+
+    {
+      text: 'Continue',
+      nextText: 6
+    }
+
+  ]
+},
+
+{
+  id: 6,
+
+  text:
+`Puzzle #3
+
+Decode the Vietnamese lotus chant.
+
+“No other species in the lake can rival lotuses...”`,
+
+  options: [
+
+    {
+      text: 'We can still make our voices be heard.',
+      nextText: 7
+    },
+
+    {
+      text: 'All life comes to an end.',
+      nextText: 7
+    },
+
+    {
+      text: 'Yeah, you’re probably right.',
+      nextText: 7
+    },
+
+    {
+      text: 'Let’s have a little faith.',
+      nextText: 7
+    }
+
+  ]
+},
+
+{
+  id: 7,
+
+  text:
+`Hoa brightens and runs toward the lotus pond.
+
+A dragonfly lands briefly on a lotus blossom.
+
+She tosses a penny into the Saigon Wishing Fountain.
+
+Puzzle #4:
+Why is the water buffalo important in Vietnamese culture?`,
+
+  options: [
+
+    {
+      text: 'Pillar of the home',
+      nextText: 8
+    },
+
+    {
+      text: 'Spiritual beliefs',
+      nextText: 8
+    },
+
+    {
+      text: 'Legends and myths',
+      nextText: 8
+    },
+
+    {
+      text: 'Agricultural heritage',
+      nextText: 8
+    },
+
+    {
+      text: 'All of the above',
+      nextText: 8
+    }
+
+  ]
+},
+
+{
+  id: 8,
+
+  text:
+`Part 3: The Lion Dance
+
+You and Hoa rush toward the duck pond for the Lion Dance performance.
+
+A volunteer named Anh approaches with a petition clipboard.
+
+“We need signatures to help save the park.”`,
+
+  options: [
+
+    {
+      text: 'Sign the petition',
+      nextText: 9
+    }
+
+  ]
+},
+
+{
+  id: 9,
+
+  text:
+`Anh explains that local businesses and community spaces are disappearing.
+
+Hoa looks determined.
+
+“I want to help save the park forever.”`,
+
+  options: [
+
+    {
+      text: 'Continue',
+      nextText: 10
+    }
+
+  ]
+},
+
+{
+  id: 10,
+
+  text:
+`Puzzle #5:
+Which organizations can help preserve the park?`,
+
+  options: [
+
+    {
+      text: 'California Environmental Quality Act (CEQA)',
+      nextText: 11
+    },
+
+    {
+      text: 'State Office of Historic Preservation',
+      nextText: 11
+    },
+
+    {
+      text: 'Landmark THIS!',
+      nextText: 11
+    },
+
+    {
+      text: 'City’s Cultural Heritage Commission',
+      nextText: 11
+    }
+
+  ]
+},
+
+{
+  id: 11,
+
+  text:
+`You unwrap the picnic snacks beside the pond.
+
+Then you reveal the final dessert.
+
+Hoa gasps in delight.
+
+Puzzle #6:
+What dessert is she excited about?`,
+
+  options: [
+
+    {
+      text: 'Bánh Đậu Xanh',
+      nextText: 12
+    },
+
+    {
+      text: 'Chè Thái',
+      nextText: 12
+    },
+
+    {
+      text: 'Bánh Trung Thu',
+      nextText: 12
+    },
+
+    {
+      text: 'Bánh Chưng',
+      nextText: 12
+    }
+
+  ]
+},
+
+{
+  id: 12,
+
+  text:
+`“Mooncakes??”
+
+“I made your favorite. Red bean paste.”
+
+Hoa beams as drums begin echoing around the duck pond.`,
+
+  options: [
+
+    {
+      text: 'Continue',
+      nextText: 13
+    }
+
+  ]
+},
+
+{
+  id: 13,
+
+  text:
+`Lion dancers march through the park in brilliant red and gold.
+
+Hoa places her lì xì envelope into the lion’s mouth.
+
+The lion bows to her.`,
+
+  options: [
+
+    {
+      text: 'Continue',
+      nextText: 14
+    }
+
+  ]
+},
+
+{
+  id: 14,
+
+  text:
+`The moon rises over the festival.
+
+Hoa asks:
+
+“Are you really going to join the volunteer group?”`,
+
+  options: [
+
+    {
+      text: 'Yes. We’ll go together.',
+      nextText: 15
+    }
+
+  ]
+},
+
+{
+  id: 15,
+
+  text:
+`Puzzle #7
+
+Decode:
+6-16-42-6 26-42-28-14 28-2-26 26-30-18`,
+
+  options: [
+
+    {
+      text: 'chuc mung nam moi',
+      nextText: 16
+    }
+
+  ]
+},
+
+{
+  id: 16,
+
+  text:
+`“Happy New Year, chúc mừng năm mới!”
+
+“Chúc mừng năm mới, Hoa.”
+
+The drums fade into the evening as the festival lights glow across the water.
+
+Conclusion
+
+Thank you for playing the Lunar New Years escape room.
+
+We hope you gained a deeper appreciation of public parks and Vietnamese cultural traditions.`,
+
+  options: [
+
+    {
+      text: 'Play Again',
+      nextText: -1
+    }
+
+  ]
+}
 ]
 
 startGame()
