@@ -255,17 +255,70 @@ body {
 
 /* TEXT */
 
+/* STORY TEXT */
+
 #text {
 
   white-space: pre-line;
 
-  line-height: 1.9;
+  line-height: 1.8;
 
-  font-size: 24px;
+  font-size: 15px;
 
-  color: #4a1b12;
+  margin-bottom: 30px;
+}
 
-  margin-bottom: 28px;
+/* TEXT STYLES */
+
+#text h1 {
+
+  color: #fdee83;
+
+  font-size: 34px;
+
+  margin-bottom: 20px;
+
+  border-bottom: 3px solid #d7000f;
+
+  padding-bottom: 10px;
+
+  text-shadow: 0 0 10px black;
+}
+
+#text h2 {
+
+  color: #ffcc66;
+
+  font-size: 26px;
+
+  margin-top: 25px;
+
+  margin-bottom: 15px;
+
+  text-shadow: 0 0 8px black;
+}
+
+#text h3 {
+
+  color: #ffd98a;
+
+  font-size: 20px;
+
+  margin-top: 18px;
+
+  margin-bottom: 10px;
+}
+
+#text strong {
+
+  color: #fff3b0;
+}
+
+#text em {
+
+  color: #ffcc99;
+
+  font-style: italic;
 }
 
 /* BUTTONS */
