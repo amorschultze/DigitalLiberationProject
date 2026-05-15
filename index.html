@@ -1,39 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    http-equiv="X-UA-Compatible"
+    content="ie=edge"
+  >
 
   <title>remember the night?</title>
 
-  <link rel="stylesheet" href="cyoa.css">
+  <link
+    rel="stylesheet"
+    href="cyoa.css"
+  >
 
-  <script defer src="https://projectrightsideup.neocities.org/hawkins/rememberthenight.js"></script>
 </head>
 
 <body>
 
 <div class="card">
 
+  <!-- TITLE -->
+
   <div class="card-title">
     REMEMBER<br>THE<br>NIGHT
   </div>
 
-  <div class="container">
+  <!-- SEAL -->
+
+  <div class="card-seal"></div>
+
+  <!-- FLOWER 1 -->
+
+  <div class="card-flower-1">
+
+    <div class="card-flower-petal petal-1"></div>
+    <div class="card-flower-petal petal-2"></div>
+    <div class="card-flower-petal petal-3"></div>
+    <div class="card-flower-petal petal-4"></div>
+    <div class="card-flower-petal petal-5"></div>
+
+    <div class="card-flower-pollen pollen-1"></div>
+    <div class="card-flower-pollen pollen-2"></div>
+    <div class="card-flower-pollen pollen-3"></div>
+    <div class="card-flower-pollen pollen-4"></div>
+    <div class="card-flower-pollen pollen-5"></div>
+
+  </div>
+
+  <!-- FLOWER 2 -->
+
+  <div class="card-flower-2">
+
+    <div class="card-flower-petal petal-1"></div>
+    <div class="card-flower-petal petal-2"></div>
+    <div class="card-flower-petal petal-3"></div>
+    <div class="card-flower-petal petal-4"></div>
+    <div class="card-flower-petal petal-5"></div>
+
+    <div class="card-flower-pollen pollen-1"></div>
+    <div class="card-flower-pollen pollen-2"></div>
+    <div class="card-flower-pollen pollen-3"></div>
+    <div class="card-flower-pollen pollen-4"></div>
+    <div class="card-flower-pollen pollen-5"></div>
+
+  </div>
+
+  <!-- GAME WINDOW -->
+
+  <div class="game-container">
 
     <div id="text">
       Text
     </div>
 
-    <div id="option-buttons" class="btn-grid">
-      <button class="btn">Option 1</button>
-      <button class="btn">Option 2</button>
-      <button class="btn">Option 3</button>
-      <button class="btn">Option 4</button>
+    <div
+      id="option-buttons"
+      class="btn-grid"
+    >
+      <button class="btn">
+        Option 1
+      </button>
+
+      <button class="btn">
+        Option 2
+      </button>
     </div>
 
   </div>
+
+  <!-- HILLS -->
 
   <div class="card-hill hill-1"></div>
   <div class="card-hill hill-2"></div>
@@ -43,13 +107,18 @@
 
 <script>
 
-const textElement = document.getElementById('text')
-const optionButtonsElement = document.getElementById('option-buttons')
+const textElement =
+  document.getElementById('text')
+
+const optionButtonsElement =
+  document.getElementById('option-buttons')
 
 let state = {}
 
 function startGame() {
+
   state = {}
+
   showTextNode(1)
 }
 
@@ -57,12 +126,17 @@ function showTextNode(textNodeIndex) {
 
   const textNode =
     textNodes.find(
-      textNode => textNode.id === textNodeIndex
+      textNode =>
+        textNode.id === textNodeIndex
     )
 
-  textElement.innerText = textNode.text
+  textElement.innerText =
+    textNode.text
 
-  while (optionButtonsElement.firstChild) {
+  while (
+    optionButtonsElement.firstChild
+  ) {
+
     optionButtonsElement.removeChild(
       optionButtonsElement.firstChild
     )
@@ -75,7 +149,8 @@ function showTextNode(textNodeIndex) {
       const button =
         document.createElement('button')
 
-      button.innerText = option.text
+      button.innerText =
+        option.text
 
       button.classList.add('btn')
 
@@ -91,13 +166,17 @@ function showTextNode(textNodeIndex) {
 }
 
 function showOption(option) {
-  return option.requiredState == null ||
-         option.requiredState(state)
+
+  return (
+    option.requiredState == null ||
+    option.requiredState(state)
+  )
 }
 
 function selectOption(option) {
 
-  const nextTextNodeId = option.nextText
+  const nextTextNodeId =
+    option.nextText
 
   if (nextTextNodeId <= 0) {
     return startGame()
@@ -117,23 +196,23 @@ const textNodes = [
     id: 1,
 
     text:
-`Your name is Private Cooper. A member of armed forces, you were just recently installed in Hawkins, Indiana.
+`Your name is Private Cooper.
 
 You emerge from your truck and are assaulted with the stench of smoldering flesh and rancid blood.
 
-A massacre happened here, that you can be sure.
+A massacre happened here.
 
-"We're splitting the forces between truck Alpha and truck Beta. Find a seat and move out," Sergeant Turner tells you.`,
+"We're splitting the forces between truck Alpha and truck Beta."`,
 
     options: [
 
       {
-        text: 'Take Truck Alpha.',
+        text: 'Take Truck Alpha',
         nextText: 2
       },
 
       {
-        text: 'Take Truck Beta.',
+        text: 'Take Truck Beta',
         nextText: 3
       }
 
@@ -144,11 +223,9 @@ A massacre happened here, that you can be sure.
     id: 2,
 
     text:
-`You climb in Truck Alpha and find a seat in the back next to your team.
+`Truck Alpha heads directly toward the flesh wall.
 
-The truck begins heading toward the flesh wall.
-
-One soldier beside you looks like he's about to throw up.`,
+The soldier beside you looks like he's about to throw up.`,
 
     options: [
 
@@ -169,21 +246,19 @@ One soldier beside you looks like he's about to throw up.`,
     id: 3,
 
     text:
-`You climb in Truck Beta and find a seat in the back next to your team.
+`Truck Beta arrives at Hawkins Memorial Hospital.
 
-You arrive at Hawkins Memorial Hospital.
-
-Two groups split up — one heading to Floor 2, one heading to Floor 3.`,
+Two groups split up — one to Floor 2, one to Floor 3.`,
 
     options: [
 
       {
-        text: 'Follow the group to Floor 2.',
+        text: 'Go to Floor 2',
         nextText: 6
       },
 
       {
-        text: 'Follow the group to Floor 3.',
+        text: 'Go to Floor 3',
         nextText: 7
       }
 
@@ -194,11 +269,7 @@ Two groups split up — one heading to Floor 2, one heading to Floor 3.`,
     id: 4,
 
     text:
-`"What do you think? Are you okay?"
-
-The soldier's voice trembles.
-
-"If you knock, someone answers the door."`,
+`"If you knock, someone answers the door."`,
 
     options: [
 
@@ -214,11 +285,7 @@ The soldier's voice trembles.
     id: 5,
 
     text:
-`"You'd look like this too if you knew what was coming."
-
-The soldier stares at the floor.
-
-"If you knock, someone answers the door."`,
+`"You'd look like this too if you knew what was coming."`,
 
     options: [
 
@@ -234,21 +301,17 @@ The soldier stares at the floor.
     id: 6,
 
     text:
-`You stand guard near the hospital staircase.
-
-The place seems secure enough.
-
-Maybe too secure.`,
+`The hospital seems strangely secure.`,
 
     options: [
 
       {
-        text: 'Wander the halls.',
+        text: 'Wander the halls',
         nextText: 9
       },
 
       {
-        text: 'Stay put.',
+        text: 'Stay put',
         nextText: 10
       }
 
@@ -259,19 +322,17 @@ Maybe too secure.`,
     id: 7,
 
     text:
-`You notice a candystriper pacing nervously.
-
-She looks terrified.`,
+`A terrified candystriper paces the hallway.`,
 
     options: [
 
       {
-        text: 'Talk to her.',
+        text: 'Talk to her',
         nextText: 21
       },
 
       {
-        text: 'Ignore her.',
+        text: 'Ignore her',
         nextText: 22
       }
 
@@ -282,9 +343,7 @@ She looks terrified.`,
     id: 8,
 
     text:
-`Your attempts to run are in vain.
-
-The monster catches you.
+`The monster catches you.
 
 YOU DIED.`,
 
@@ -293,250 +352,6 @@ YOU DIED.`,
       {
         text: 'Restart',
         nextText: -1
-      }
-
-    ]
-  },
-
-  {
-    id: 9,
-
-    text:
-`You wander deeper into the hospital halls.
-
-A group of candystripers whisper in the corner.`,
-
-    options: [
-
-      {
-        text: 'Eavesdrop.',
-        nextText: 11
-      },
-
-      {
-        text: 'Keep walking.',
-        nextText: 10
-      }
-
-    ]
-  },
-
-  {
-    id: 10,
-
-    text:
-`The lights begin to strobe violently.
-
-An alarm blares through the hospital.
-
-Something is wrong.`,
-
-    options: [
-
-      {
-        text: 'Stay at your station.',
-        nextText: 13
-      },
-
-      {
-        text: 'Investigate the noise.',
-        nextText: 19
-      }
-
-    ]
-  },
-
-  {
-    id: 11,
-
-    text:
-`You overhear the nurses talking about injuries no human could survive.
-
-Then a scream echoes through the hospital.`,
-
-    options: [
-
-      {
-        text: 'CONTINUE',
-        nextText: 10
-      }
-
-    ]
-  },
-
-  {
-    id: 13,
-
-    text:
-`A blood-curdling scream tears through the hallway.`,
-
-    options: [
-
-      {
-        text: 'Stay put.',
-        nextText: 15
-      },
-
-      {
-        text: 'Run for the emergency stairs.',
-        nextText: 16
-      }
-
-    ]
-  },
-
-  {
-    id: 15,
-
-    text:
-`The hallway falls silent.
-
-Then something begins moving toward you.`,
-
-    options: [
-
-      {
-        text: 'CONTINUE',
-        nextText: 17
-      }
-
-    ]
-  },
-
-  {
-    id: 16,
-
-    text:
-`Survival wins over duty.
-
-You sprint toward the emergency staircase.`,
-
-    options: [
-
-      {
-        text: 'Go to the First Floor.',
-        nextText: 26
-      },
-
-      {
-        text: 'Go to the Basement.',
-        nextText: 27
-      }
-
-    ]
-  },
-
-  {
-    id: 17,
-
-    text:
-`A grotesque creature crawls into view.
-
-Its flower-like mouth blooms open.
-
-Rows of razor-sharp teeth glisten in the dark.`,
-
-    options: [
-
-      {
-        text: 'Shoot it.',
-        nextText: 20
-      }
-
-    ]
-  },
-
-  {
-    id: 19,
-
-    text:
-`You round the corner and find a mutilated soldier.
-
-Something is feeding on him.`,
-
-    options: [
-
-      {
-        text: 'Run.',
-        nextText: 25
-      },
-
-      {
-        text: 'Shoot.',
-        nextText: 25
-      }
-
-    ]
-  },
-
-  {
-    id: 20,
-
-    text:
-`Your bullets do nothing.
-
-The creature tears into you.
-
-YOU DIED.`,
-
-    options: [
-
-      {
-        text: 'TRY AGAIN',
-        nextText: -1
-      }
-
-    ]
-  },
-
-  {
-    id: 21,
-
-    text:
-`The candystriper nearly jumps out of her skin when you approach.`,
-
-    options: [
-
-      {
-        text: 'Reassure her.',
-        nextText: 24
-      },
-
-      {
-        text: 'Demand answers.',
-        nextText: 24
-      }
-
-    ]
-  },
-
-  {
-    id: 22,
-
-    text:
-`She sighs in relief as you walk away.`,
-
-    options: [
-
-      {
-        text: 'CONTINUE',
-        nextText: 10
-      }
-
-    ]
-  },
-
-  {
-    id: 24,
-
-    text:
-`Before you can speak, another scream interrupts you.`,
-
-    options: [
-
-      {
-        text: 'CONTINUE',
-        nextText: 10
       }
 
     ]
