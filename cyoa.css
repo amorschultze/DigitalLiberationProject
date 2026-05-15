@@ -33,15 +33,18 @@ body {
 
   margin: auto;
 
-  width: 394px;
-  height: 583px;
+  width: 700px;
+  height: 950px;
+
+  max-width: 95vw;
+  max-height: 95vh;
 
   border:
-    10px solid #d7000f;
+    14px solid #d7000f;
 
   filter:
     drop-shadow(
-      3px 3px 6px black
+      6px 6px 12px black
     );
 
   position: relative;
@@ -62,12 +65,14 @@ body {
 
   position: absolute;
 
-  top: 30px;
-  right: 30px;
+  top: 40px;
+  right: 40px;
 
-  font-size: 60px;
+  font-size: 90px;
 
-  letter-spacing: 20px;
+  letter-spacing: 24px;
+
+  line-height: 1;
 
   writing-mode: vertical-rl;
 
@@ -80,13 +85,13 @@ body {
 
 .card-seal {
 
-  width: 80px;
-  height: 80px;
+  width: 120px;
+  height: 120px;
 
   position: absolute;
 
-  bottom: 300px;
-  right: 100px;
+  bottom: 420px;
+  right: 150px;
 
   background:
     radial-gradient(
@@ -106,8 +111,8 @@ body {
 
   position: absolute;
 
-  width: 30px;
-  height: 30px;
+  width: 45px;
+  height: 45px;
 
   border-radius: 50%;
 
@@ -124,31 +129,31 @@ body {
 }
 
 .petal-2 {
-  top: 10px;
-  left: 15px;
+  top: 15px;
+  left: 22px;
 }
 
 .petal-3 {
-  top: 25px;
-  left: 10px;
+  top: 38px;
+  left: 15px;
 }
 
 .petal-4 {
-  top: 25px;
-  left: -10px;
+  top: 38px;
+  left: -15px;
 }
 
 .petal-5 {
-  top: 10px;
-  left: -15px;
+  top: 15px;
+  left: -22px;
 }
 
 .card-flower-pollen {
 
   position: absolute;
 
-  width: 6px;
-  height: 6px;
+  width: 10px;
+  height: 10px;
 
   border-radius: 50%;
 
@@ -156,36 +161,36 @@ body {
 }
 
 .pollen-1 {
-  top: 18px;
-  left: 12px;
-}
-
-.pollen-2 {
-  top: 22px;
+  top: 28px;
   left: 18px;
 }
 
+.pollen-2 {
+  top: 34px;
+  left: 28px;
+}
+
 .pollen-3 {
-  top: 29px;
-  left: 16px;
+  top: 44px;
+  left: 24px;
 }
 
 .pollen-4 {
-  top: 29px;
-  left: 8px;
+  top: 44px;
+  left: 12px;
 }
 
 .pollen-5 {
-  top: 22px;
-  left: 6px;
+  top: 34px;
+  left: 8px;
 }
 
 .card-flower-1 {
 
   position: relative;
 
-  top: 200px;
-  left: 70px;
+  top: 320px;
+  left: 100px;
 
   transform: rotate(-10deg);
 }
@@ -194,12 +199,12 @@ body {
 
   position: relative;
 
-  top: 50px;
-  left: 160px;
+  top: 120px;
+  left: 260px;
 
   transform:
     rotate(10deg)
-    scale(.7);
+    scale(1.1);
 }
 
 /* GAME WINDOW */
@@ -208,21 +213,21 @@ body {
 
   position: absolute;
 
-  top: 60px;
-  left: 25px;
+  top: 70px;
+  left: 40px;
 
-  width: 220px;
-  height: 420px;
+  width: 420px;
+  height: 700px;
 
   overflow-y: auto;
 
   background:
-    rgba(0,0,0,0.8);
+    rgba(0,0,0,0.82);
 
   border:
-    3px solid #d7000f;
+    4px solid #d7000f;
 
-  padding: 18px;
+  padding: 28px;
 
   box-sizing: border-box;
 
@@ -231,7 +236,7 @@ body {
   z-index: 10;
 
   box-shadow:
-    0 0 15px black;
+    0 0 25px black;
 
   font-family:
     "Lucida Console",
@@ -244,11 +249,11 @@ body {
 
   white-space: pre-line;
 
-  line-height: 1.6;
+  line-height: 1.8;
 
-  font-size: 12px;
+  font-size: 24px;
 
-  margin-bottom: 20px;
+  margin-bottom: 28px;
 }
 
 /* BUTTONS */
@@ -259,7 +264,7 @@ body {
 
   flex-direction: column;
 
-  gap: 10px;
+  gap: 18px;
 }
 
 .btn {
@@ -267,9 +272,9 @@ body {
   background: #d7000f;
 
   border:
-    2px solid #fdee83;
+    3px solid #fdee83;
 
-  padding: 10px;
+  padding: 18px;
 
   color: white;
 
@@ -281,7 +286,7 @@ body {
     "Lucida Console",
     monospace;
 
-  font-size: 12px;
+  font-size: 22px;
 }
 
 .btn:hover {
@@ -290,7 +295,7 @@ body {
 
   color: #fdee83;
 
-  transform: scale(1.03);
+  transform: scale(1.05);
 }
 
 /* HILLS */
@@ -304,50 +309,104 @@ body {
 
 .hill-1 {
 
-  width: 250px;
-  height: 250px;
+  width: 420px;
+  height: 420px;
 
   background: #fff;
 
   border-top:
-    10px solid #D9AF64;
+    12px solid #D9AF64;
 
   border-right:
-    10px solid #D9AF64;
+    12px solid #D9AF64;
 
   border-radius:
-    0 250px 0 0;
+    0 420px 0 0;
 }
 
 .hill-2 {
 
   right: 0;
 
-  width: 250px;
-  height: 250px;
+  width: 420px;
+  height: 420px;
 
   background: #ffc966;
 
   border-top:
-    10px solid #D9AF64;
+    12px solid #D9AF64;
 
   border-left:
-    10px solid #D9AF64;
+    12px solid #D9AF64;
 
   border-radius:
-    250px 0 0 0;
+    420px 0 0 0;
 }
 
 .hill-3 {
 
-  width: 394px;
-  height: 197px;
+  width: 700px;
+  height: 280px;
 
   background: #D7000F;
 
   border-top:
-    10px solid #D9AF64;
+    12px solid #D9AF64;
 
   border-radius:
-    394px 394px 0 0;
+    700px 700px 0 0;
+}
+
+/* SCROLLBAR */
+
+.game-container::-webkit-scrollbar {
+
+  width: 10px;
+}
+
+.game-container::-webkit-scrollbar-track {
+
+  background: black;
+}
+
+.game-container::-webkit-scrollbar-thumb {
+
+  background: #d7000f;
+
+  border-radius: 10px;
+}
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+  .card {
+
+    width: 95vw;
+    height: 95vh;
+  }
+
+  .game-container {
+
+    width: 55%;
+    height: 68%;
+  }
+
+  #text {
+
+    font-size: 18px;
+  }
+
+  .btn {
+
+    font-size: 18px;
+    padding: 14px;
+  }
+
+  .card-title {
+
+    font-size: 60px;
+
+    letter-spacing: 14px;
+  }
 }
