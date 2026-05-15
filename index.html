@@ -15,7 +15,7 @@
     content="ie=edge"
   >
 
-  <title>remember the night?</title>
+  <title>Tết at Trăng Hy Vọng</title>
 
   <link
     rel="stylesheet"
@@ -130,7 +130,7 @@ function showTextNode(textNodeIndex) {
         textNode.id === textNodeIndex
     )
 
-  textElement.innerText =
+  textElement.innerHTML =
     textNode.text
 
   while (
@@ -196,7 +196,7 @@ const textNodes = [
   id: 1,
 
   text:
-`Introduction
+`<h2>Introduction</h2>
 
 Today, you’ll be visiting the local Trăng Hy Vọng park with your seven-year-old niece, Hoa. You’ve been looking forward to this for weeks, and have planned out the perfect day with her: today it’ll be hosting its 30th Vietnamese Tết festival to celebrate Lunar New Years! You’ve planned a visit to the food stalls, a trip through the lotus gardens, and a small picnic at the duck pond to watch the Lion dances.
 
@@ -206,7 +206,7 @@ PS. I encourage you to look up some of these terms to discover new foods, clothi
 
   options: [
     {
-      text: 'Begin the Festival',
+      text: 'Begin the Festival!',
       nextText: 2
     }
   ]
