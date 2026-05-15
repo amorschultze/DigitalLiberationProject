@@ -1,61 +1,48 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link href="cyoa.css" rel="stylesheet">
-  <script defer src="https://projectrightsideup.neocities.org/hawkins/rememberthenight.js"></script>
+
   <title>remember the night?</title>
+
+  <link rel="stylesheet" href="cyoa.css">
+
+  <script defer src="https://projectrightsideup.neocities.org/hawkins/rememberthenight.js"></script>
 </head>
+
 <body>
-<div class="parent">
+
+<div class="card">
+
+  <div class="card-title">
+    REMEMBER<br>THE<br>NIGHT
+  </div>
+
   <div class="container">
-    <div id="text">Text</div>
+
+    <div id="text">
+      Text
+    </div>
+
     <div id="option-buttons" class="btn-grid">
       <button class="btn">Option 1</button>
       <button class="btn">Option 2</button>
       <button class="btn">Option 3</button>
       <button class="btn">Option 4</button>
     </div>
+
   </div>
+
+  <div class="card-hill hill-1"></div>
+  <div class="card-hill hill-2"></div>
+  <div class="card-hill hill-3"></div>
+
 </div>
 
- <style>
- .parent {
-   position: relative;
- }
- 
- .container {
-   background-color: black;
-   padding: 20px;
+<script>
 
- }
- 
- .btn-grid {
-  display: grid;
-  grid-template-columns: repeat(2, auto);
-  gap: 10px;
-  margin-top: 20px;
-}
-
-.btn {
-  background-color: white;
-  border: 2px solid gray;
-  border-radius: 2px;
-  padding: 5px 10px;
-  color: black;
-  outline: none;
-  font-family: Lucida Console, monospace;
-}
-
-.btn:hover {
-  border-color: black;
-}
- </style>
-  
-  <script>
 const textElement = document.getElementById('text')
 const optionButtonsElement = document.getElementById('option-buttons')
 
@@ -67,491 +54,499 @@ function startGame() {
 }
 
 function showTextNode(textNodeIndex) {
-  const textNode = textNodes.find(textNode => textNode.id === textNodeIndex)
+
+  const textNode =
+    textNodes.find(
+      textNode => textNode.id === textNodeIndex
+    )
+
   textElement.innerText = textNode.text
+
   while (optionButtonsElement.firstChild) {
-    optionButtonsElement.removeChild(optionButtonsElement.firstChild)
+    optionButtonsElement.removeChild(
+      optionButtonsElement.firstChild
+    )
   }
 
   textNode.options.forEach(option => {
+
     if (showOption(option)) {
-      const button = document.createElement('button')
+
+      const button =
+        document.createElement('button')
+
       button.innerText = option.text
+
       button.classList.add('btn')
-      button.addEventListener('click', () => selectOption(option))
+
+      button.addEventListener(
+        'click',
+        () => selectOption(option)
+      )
+
       optionButtonsElement.appendChild(button)
     }
+
   })
 }
 
 function showOption(option) {
-  return option.requiredState == null || option.requiredState(state)
+  return option.requiredState == null ||
+         option.requiredState(state)
 }
 
 function selectOption(option) {
+
   const nextTextNodeId = option.nextText
+
   if (nextTextNodeId <= 0) {
     return startGame()
   }
-  state = Object.assign(state, option.setState)
+
+  state = Object.assign(
+    state,
+    option.setState
+  )
+
   showTextNode(nextTextNodeId)
 }
 
 const textNodes = [
+
   {
     id: 1,
-    text: "Your name is Private Cooper. A member of armed forces, you were just recently installed in Hawkins, Indiana. You're not entirely sure why the place is on military lockdown like this--they don't tell you much. But you arrived with your fellow cadets and officers to the Military Access Control Zone, or the MAC-Z. \nYou emerge from your truck and are assaulted with the stench of smoldering flesh and rancid blood. There's carnage everywhere--bodies, bodies of your fellow soldiers, burned to an unrecognizable crisp. Ashy clouds emit from the countless fires, singeing the few remnants of life left in this place. Blood splatters stain the sides of overturned trucks, guns lie on the ground, fired and fruitless. The fleshy wall you had seen your few times at the MAC-Z has expanded and is now glowing red, emitting small gusts of a dusty particle substance. A massacre happened here, that you can be sure--but what human could possibly be capable of suck wreckage? \nYou don't have enough time to think before your superior, Sergeant Turner, is calling you over. His voice is stern, but you can sense the fear, the uncertainty. However little you know, he doesn't seem to know much more. 'We're splitting the forces between truck Alpha and truck Beta. Find a seat and move out,' he tells you. You salute and he walks quickly away, leaving you between the two trucks. There's room for you in either of them.",
+
+    text:
+`Your name is Private Cooper. A member of armed forces, you were just recently installed in Hawkins, Indiana.
+
+You emerge from your truck and are assaulted with the stench of smoldering flesh and rancid blood.
+
+A massacre happened here, that you can be sure.
+
+"We're splitting the forces between truck Alpha and truck Beta. Find a seat and move out," Sergeant Turner tells you.`,
+
     options: [
+
       {
         text: 'Take Truck Alpha.',
         nextText: 2
       },
+
       {
         text: 'Take Truck Beta.',
         nextText: 3
       }
-    ]
-  },
-  
-  /* TRUCK ALPHA BELOW */
-  
-  
-  
-  {
-    id: 2,
-    text: "You climb in Truck Alpha and find a seat in the back next to your team. Everyone is mostly silent. You get the sinking feeling you chose wrong, though you probably would have had that feeling had you chosen the other truck. The vehicle begins to shake and you peer out the small window through to the driver's seat and out the windshield. Your truck is headed straight for the flesh wall. Word of mouth told you that people get missions to head through the flesh wall, to whatever is on the other side. You don't know what could possibly be on the other side being that the tear is splitting through the front of the Hawkins Public Library. But whatever is through there, you are soon to find out. \n The truck jerks as it passes through the flesh wall, forcing you back into your seat. Your team seems mostly nervous, except for one person who looks like he's about to throw up. His eyes quickly dart towards you, catching you staring at him. You have no choice but to say something.",
-    options: [
-      {
-        text: "'You okay?'",
-        nextText: 4
-      },
-      {
-        text: "'Sorry.'",
-        nextText: 5
-      },
-    ]
-  },
-  
-  /* TRUCK BETA BELOW */
-  
-  {
-    id: 3,
-    text: "You climb in Truck Beta and find a seat in the back next to your team. The group is speaking in a whispered hush. You hear someone mention the hospital and assume that's where you're going--Hawkins Memorial Hospital. You hope there's nothing much for you to do there; hospitals always made you strangely uncomfortable. The ride to the hospital is relatively painless. \n You arrive to the building and pull right up to the front. The man sitting in the passenger's seat, who you recognize as one of the sergeants, speaks to your group. 'The crew I spoke to before, you know what to do. You'll be following me for this investigation. The rest of you, station yourself by staircases and exits. No one comes in, no one comes out. Do I make myself clear?' He speaks sternly; you nod your head. As you emerge from Truck Beta and enter the hospital, two groups split up--one going to Floor 2, one going to Floor 3.",
-    options: [
-      {
-        text: 'Follow the group to Floor 2',
-        nextText: 6
-      },
-      {
-        text: 'Follow the group to Floor 3',
-        nextText: 7
-      },
-     
-/* ANSWERS FROM TRUCK ALPHA */
-    ]
-  },
-  {
-    id: 4,
-    text: "'What do you think? Are you okay? If you answer that with a 'yes' then you need to get your head checked.' he says with a quivering voice. 'Had a buddy come here on a mission one time, direct orders from Kay herself, and he never came back. I was listening to the radio while he was in there...the last thing I heard from him was a scream. A bloody, ear shredding scream. Then a growl. I don't know what kind of animal made that sound, but it killed him. The animal killed him. And now we're driving a clanking metal box straight into it's home. If you knock, someone answers the door.'",
-    options: [
-      {
-        text: 'CONTINUE',
-        nextText: 8
-      }
-    ]
-  },
-  {
-    id: 5,
-    text: "'You'd look like this too if you knew what was coming,' he says with a quivering voice. 'Had a buddy come here on a mission one time, direct orders from Kay herself, and he never came back. I was listening to the radio while he was in there...the last thing I heard from him was a scream. A bloody, ear shredding scream. Then a growl. I don't know what kind of animal made that sound, but it killed him. The animal killed him. And now we're driving a clanking metal box straight into it's home. If you knock, someone answers the door.'",
-    options: [
-      {
-        text: 'CONTINUE',
-        nextText: 8
-      }
-    ]
-  },
- 
- /* FLOOR 2 */
- 
-  {
-    id: 6,
-    text: "You follow the group up the stairs to Floor 2. The hospital is full of people, candystripers moving frantically and tired visitors mulling about. You find the group slowly dispersing to stand guard at the emergency exits and staircases; you find yourself standing in front of the main staircase down. There's multiple other soldiers around, only a few feet down from you. They're talking and not paying you much mind. You're not really needed here, the place seems to be secure.",
-    options: [
-      {
-        text: "Wander the halls. You're not needed here, anyway.",
-        nextText: 9
-      },
-      {
-        text: "Stay put. This was your assignment.",
-        nextText: 10
-      },
-    ]
-  },
-  
-  /* FLOOR 3 */
-  
-  {
-    id: 7,
-    text: 'You follow the group up to Floor 3. You wander around for a few minutes, trying to find some place useful to station yourself. You notice a candystriper pacing about frantically; she looks distressed. You catch a glimpse of the rest of your crew--the ones called by sergeant for the investigation--turning down the hall, walking away from her.',
-    options: [
-      {
-        text: 'Walk up to her. Find out what happened.',
-        nextText: 21
-      },
-      {
-        text: "Ignore her. This isn't your business, you're just a grunt.",
-        nextText: 22
-      }
-      
+
     ]
   },
 
-/* LAB OR HQ */
+  {
+    id: 2,
+
+    text:
+`You climb in Truck Alpha and find a seat in the back next to your team.
+
+The truck begins heading toward the flesh wall.
+
+One soldier beside you looks like he's about to throw up.`,
+
+    options: [
+
+      {
+        text: '"You okay?"',
+        nextText: 4
+      },
+
+      {
+        text: '"Sorry."',
+        nextText: 5
+      }
+
+    ]
+  },
+
+  {
+    id: 3,
+
+    text:
+`You climb in Truck Beta and find a seat in the back next to your team.
+
+You arrive at Hawkins Memorial Hospital.
+
+Two groups split up — one heading to Floor 2, one heading to Floor 3.`,
+
+    options: [
+
+      {
+        text: 'Follow the group to Floor 2.',
+        nextText: 6
+      },
+
+      {
+        text: 'Follow the group to Floor 3.',
+        nextText: 7
+      }
+
+    ]
+  },
+
+  {
+    id: 4,
+
+    text:
+`"What do you think? Are you okay?"
+
+The soldier's voice trembles.
+
+"If you knock, someone answers the door."`,
+
+    options: [
+
+      {
+        text: 'CONTINUE',
+        nextText: 8
+      }
+
+    ]
+  },
+
+  {
+    id: 5,
+
+    text:
+`"You'd look like this too if you knew what was coming."
+
+The soldier stares at the floor.
+
+"If you knock, someone answers the door."`,
+
+    options: [
+
+      {
+        text: 'CONTINUE',
+        nextText: 8
+      }
+
+    ]
+  },
+
+  {
+    id: 6,
+
+    text:
+`You stand guard near the hospital staircase.
+
+The place seems secure enough.
+
+Maybe too secure.`,
+
+    options: [
+
+      {
+        text: 'Wander the halls.',
+        nextText: 9
+      },
+
+      {
+        text: 'Stay put.',
+        nextText: 10
+      }
+
+    ]
+  },
+
+  {
+    id: 7,
+
+    text:
+`You notice a candystriper pacing nervously.
+
+She looks terrified.`,
+
+    options: [
+
+      {
+        text: 'Talk to her.',
+        nextText: 21
+      },
+
+      {
+        text: 'Ignore her.',
+        nextText: 22
+      }
+
+    ]
+  },
 
   {
     id: 8,
-    text: 'Your attempts to run are in vain and the monster easily catches.',
+
+    text:
+`Your attempts to run are in vain.
+
+The monster catches you.
+
+YOU DIED.`,
+
     options: [
+
       {
         text: 'Restart',
         nextText: -1
       }
+
     ]
   },
-  
-  /* WANDER THE HALLS */
-  
+
   {
     id: 9,
-    text: "Your feet start moving before you even really register what's happening. The hospital is packed with more people than you thought would even populate this middle-of-nowhere town. You end up down a long hallway and spot a group of candystripers huddled in the corner, whispering.",
+
+    text:
+`You wander deeper into the hospital halls.
+
+A group of candystripers whisper in the corner.`,
+
     options: [
-     {
-        text: "Eavesdrop. It could be information your seargent would want to know.",
+
+      {
+        text: 'Eavesdrop.',
         nextText: 11
       },
+
       {
-        text: "Keep walking. It's not your business.",
-        nextText: 12
-      },
+        text: 'Keep walking.',
+        nextText: 10
+      }
+
     ]
   },
-  
-  /* ALARM */
-  
+
   {
     id: 10,
-    text: "The lights begin to flash--no, more than flash; they're strobing, flickering violently. An alarm blares over the sound system, but no instructions follow. There's supposed to be instructions, there's always instructions. But you're left in the dark. You curse under your breath, but you're not really sure who or what it's directed at. You look around at the candystripers and see them frantic and confused. It hits you that this is a real emergency, that something is truly happening. You hear commotion from a couple hallways over.",
+
+    text:
+`The lights begin to strobe violently.
+
+An alarm blares through the hospital.
+
+Something is wrong.`,
+
     options: [
-     {
-        text: "Stay, man your station. You don't know what's happening, you need to be on guard.",
+
+      {
+        text: 'Stay at your station.',
         nextText: 13
       },
+
       {
-        text: "Investigate the commotion. Someone could be in need of your assistance.",
+        text: 'Investigate the noise.',
         nextText: 19
-      },
+      }
+
     ]
   },
-  
-  /* CANDYSTRIPER EAVESDROPPING */
-  
+
   {
     id: 11,
-    text: "You walk nonchalantly past the candystripers. You fiddle with something on your belt, trying your hardest to appear busy. The candystripers seem to have more important business than you. \n 'Yeah, their kids were here earlier. It's a shame, really,' one of them says. 'And the doctors still don't know how that happened?' the second asks. The first one replies, 'No, there was a break-in at their house, but it must of been some real monster for them to be that messed up. I've never seen an intrusion that deep that didn't require amputation.' 'How would you even--' the third nurse is interrupted.",
+
+    text:
+`You overhear the nurses talking about injuries no human could survive.
+
+Then a scream echoes through the hospital.`,
+
     options: [
+
       {
         text: 'CONTINUE',
         nextText: 10
       }
+
     ]
   },
-  
-  /* MAN YOUR STATION */
-  
+
   {
     id: 13,
-    text: "You stand your ground, the feeling of your gun burning a hole into your side. You hope this is some mistake or stupid prank, that some elderly patient got out of their room and found their way to the alarm pull. But you can't be sure, and you need to be prepared. A loud noise bangs from the hallway you were thinking of investigating, and a blood-curdling scream thunders after it.",
+
+    text:
+`A blood-curdling scream tears through the hallway.`,
+
     options: [
-     {
-        text: "Stay put. This is your job. Man your station.",
+
+      {
+        text: 'Stay put.',
         nextText: 15
       },
+
       {
-        text: "Find the emergency staircase. Backup or an escape route, you'll take either.",
+        text: 'Run for the emergency stairs.',
         nextText: 16
-      },
+      }
+
     ]
   },
-  
-  /* INVESTIGATE */
-  
-  {
-    id: 14,
-    text: "The lights begin to flash--no, more than flash; they're strobing, flickering violently. An alarm blares over the sound system, but no instructions follow. There's supposed to be instructions, there's always instructions. But you're left in the dark. You curse under your breath, but you're not really sure who or what it's directed at. \n You look around at the candystripers and see them frantic and confused. It hits you that this is a real emergency, that something is truly happening. You hear commotion from a couple hallways over.",
-    options: [
-     {
-        text: "Stay, man your station. You don't know what's happening, you need to be on guard.",
-        nextText: 13
-      },
-      {
-        text: "Investigate the commotion. Someone could be in need of your assistance.",
-        nextText: 19
-      },
-    ]
-  },
- 
- /* STAY PT 1*/ 
-  
+
   {
     id: 15,
-    text: "Your feet remain glued to the ground. The clatter stops abruptly and an eerie silence settles over the hospital floor.",
+
+    text:
+`The hallway falls silent.
+
+Then something begins moving toward you.`,
+
     options: [
-     {
-        text: "CONTINUE",
+
+      {
+        text: 'CONTINUE',
         nextText: 17
       }
-      
+
     ]
   },
-  
-  /* RUNNING FROM DEMOS */
-  
+
   {
     id: 16,
-    text: "In a battle between your self-preservation skills and given duty, your survival comes out on top any day. You know better than to face whatever is coming at you alone. Or at all, if you could help it. You bolt down the hallway and find the emergency staircase marked with a flashing red sign. You whip the door open and take off down the stairs.",
+
+    text:
+`Survival wins over duty.
+
+You sprint toward the emergency staircase.`,
+
     options: [
-     {
-        text: "Get out on the First Floor.",
+
+      {
+        text: 'Go to the First Floor.',
         nextText: 26
       },
+
       {
-        text: "Get out on the lowest level.",
+        text: 'Go to the Basement.',
         nextText: 27
-      },
+      }
+
     ]
   },
-  
-  /* STAY PT 2 */
-  
+
   {
     id: 17,
-    text: "You hear something--maybe a growl, or a chirp, or even an echo. Some noise rings through the hallway and you can't quite make out what it is. Before you could think to do anything else, some--some creature emerges from around the hall bend. \n Your heart pounds to a stop as you come face to...snout, maybe, with a grotesque abomination. Gray flesh stretches thinly over its emaciated body, its ribs looking about ready to burst through its skin. It prowls on all fours, stalking--hunting. It's...mouth? It's mouth faces you, culminating in a single point. The point bursts open and blooms like a golden dewdrop, rows upon rows of razor sharp teep on full display in its flowered mouth. It screeches and bolts towards you.",
+
+    text:
+`A grotesque creature crawls into view.
+
+Its flower-like mouth blooms open.
+
+Rows of razor-sharp teeth glisten in the dark.`,
+
     options: [
-     {
-        text: "Cock your gun and shoot.",
+
+      {
+        text: 'Shoot it.',
         nextText: 20
       }
-     
+
     ]
   },
-  
-  /* STAY PT 3 - DIE */
-  
-  {
-    id: 20,
-    text: "You whip out your gun as fast as your trembling hands allow. You release the safety and pull the trigger, again and again. The monster doesn't even seem phased--it continues its relentless assault towards you. Before you know it, you're fallen on your back and feel a gust of air where your stomach should be. You feel a liquid pool in your mouth before everything goes black. YOU DIED.",
-    options: [
-     {
-        text: "TRY AGAIN",
-        nextText: -1
-      },
-      
-    ]
-  },
-  
-  /* TALK TO VICKIE */
-  
-  {
-    id: 21,
-    text: "You walk towards the candystriper and she immediately seems on edge, like she's about ready to jump out of her skin. 'I'm so, so sorry, Sir, I told you, I don't know where she is. I haven't heard from her, I haven't seen her--I feel like she's been ignoring me, honestly, so I can't help you find her--' She cuts herself off and looks at you with a mixture of petrified fear and great concern.",
-    options: [
-     {
-        text: "Tell her you're not part of the investigation, you're just patrolling.",
-        nextText: 24
-      },
-      {
-        text: "Tell her she needs to start thinking harder, that this information is vital.",
-        nextText: 24
-      },
-    ]
-  },
-  
-  /* IGNORE VICKIE */
-  
-  {
-    id: 22,
-    text: "The candystriper looks more on edge as you walk up to her, but she lets out a little sigh of relief as you keep walking. She dashes into one of the side rooms. Your walking is interrupted.",
-    options: [
-     {
-        text: "CONTINUE",
-        nextText: 10
-      }
-     
-    ]
-  },
-  
-  /* INVESTIGATE COMMOTION */
-  
-  {
-    id: 23,
-    text: "",
-    options: [
-     {
-        text: "",
-        nextText: 13
-      },
-      {
-        text: "",
-        nextText: 19
-      },
-    ]
-  },
-  
-  /* VICKIE TEXT CONTINUE */
-  
-  {
-    id: 24,
-    text: "You open your mouth to speak, but are immediately interrupted.",
-    options: [
-     {
-        text: "CONTINUE",
-        nextText: 10
-      }
-      
-    ]
-  },
+
   {
     id: 19,
-    text: "Hand on your gun holster, you inch your way towards the epicenter of noise. You hear gnawing, gurgling, and the unmistakable sound of flesh being ripped from bone. You round the corner and come face-to-face with a grotesque abomination. Gray flesh stretches thinly over its emaciated body, its ribs looking about ready to burst through its skin. \n It stands above a desecrated corpse, one of the men from the truck you arrived here in. His skin is tore open like a hastily unwrapped gift, his guts spewed about like discarded wrapping paper. A pool of blood, viscous and filthy, emits from the cavernous hole. The man lies lifeless, blood dribbling from his lips like drool. The creature--it's...mouth? It's mouth faces you, culminating in a single point. The point bursts open and blooms like a golden dewdrop, rows upon rows of razor sharp teep on full display in its flowered mouth. It screeches and bolts towards you.",
+
+    text:
+`You round the corner and find a mutilated soldier.
+
+Something is feeding on him.`,
+
     options: [
-     {
-        text: "Run.",
-        nextText: 25
-      },
+
       {
-        text: "Take our your gun and shoot.",
+        text: 'Run.',
         nextText: 25
       },
+
+      {
+        text: 'Shoot.',
+        nextText: 25
+      }
+
     ]
   },
+
   {
-    id: 25,
-    text: "You're not fast enough. The demon lunges at you, it's nightmare of a mouth on full display. You see your compatriot's blood dripping from its mouth, feel the strings of saliva and gouging needles of teeth, smell the racid breath decorated with tissue, and taste your own blood that will soon fuel this creature to consume a hundred more of you. Everything goes black. YOU DIED.",
+    id: 20,
+
+    text:
+`Your bullets do nothing.
+
+The creature tears into you.
+
+YOU DIED.`,
+
     options: [
-     {
-        text: "TRY AGAIN.",
+
+      {
+        text: 'TRY AGAIN',
         nextText: -1
       }
-      
+
     ]
   },
-  
-  /* FLEE TO FIRST FLOOR */
-  
+
   {
-    id: 26,
-    text: "You reach the landing for the First Floor. You swing the door open without a second thought and are greeted with the body of a nurse lying on the ground, her blood pooling around her in an embrace. Her stomach is ripped open and you can see what should have been her small intestine before you feel the overwhelming urge to vomit.",
+    id: 21,
+
+    text:
+`The candystriper nearly jumps out of her skin when you approach.`,
+
     options: [
-     {
-        text: "Hold it back. Keep moving.",
-        nextText: 30
-      },
+
       {
-        text: "Succumb to the nauseua.",
-        nextText: 31
+        text: 'Reassure her.',
+        nextText: 24
       },
+
+      {
+        text: 'Demand answers.',
+        nextText: 24
+      }
+
     ]
   },
-  
-  /* FLEE TO BASEMENT LEVEL */
-  
+
   {
-    id: 27,
-    text: "The lights begin to flash--no, more than flash; they're strobing, flickering violently. An alarm blares over the sound system, but no instructions follow. There's supposed to be instructions, there's always instructions. But you're left in the dark. You curse under your breath, but you're not really sure who or what it's directed at. You look around at the candystripers and see them frantic and confused. It hits you that this is a real emergency, that something is truly happening. You hear commotion from a couple hallways over.",
+    id: 22,
+
+    text:
+`She sighs in relief as you walk away.`,
+
     options: [
-     {
-        text: "Break the door handle with your gun. You're getting out, one way or another.",
-        nextText: 28
-      },
+
       {
-        text: "The door handle is never going to break. Get back to the First Floor.",
-        nextText: 29
-      },
+        text: 'CONTINUE',
+        nextText: 10
+      }
+
     ]
   },
-  
-  /* BREAK DOOR HANDLE */
-  
+
   {
-    id: 28,
-    text: "The lights begin to flash--no, more than flash; they're strobing, flickering violently. An alarm blares over the sound system, but no instructions follow. There's supposed to be instructions, there's always instructions. But you're left in the dark. You curse under your breath, but you're not really sure who or what it's directed at. You look around at the candystripers and see them frantic and confused. It hits you that this is a real emergency, that something is truly happening. You hear commotion from a couple hallways over.",
+    id: 24,
+
+    text:
+`Before you can speak, another scream interrupts you.`,
+
     options: [
-     {
-        text: "Stay, man your station. You don't know what's happening, you need to be on guard.",
-        nextText: 13
-      },
+
       {
-        text: "Investigate the commotion. Someone could be in need of your assistance.",
-        nextText: 13
-      },
+        text: 'CONTINUE',
+        nextText: 10
+      }
+
     ]
-  },
-  
-  /* RETREAT BACK TO FIRST FLOOR */
-  
-  {
-    id: 29,
-    text: "The lights begin to flash--no, more than flash; they're strobing, flickering violently. An alarm blares over the sound system, but no instructions follow. There's supposed to be instructions, there's always instructions. But you're left in the dark. You curse under your breath, but you're not really sure who or what it's directed at. You look around at the candystripers and see them frantic and confused. It hits you that this is a real emergency, that something is truly happening. You hear commotion from a couple hallways over.",
-    options: [
-     {
-        text: "Stay, man your station. You don't know what's happening, you need to be on guard.",
-        nextText: 13
-      },
-      {
-        text: "Investigate the commotion. Someone could be in need of your assistance.",
-        nextText: 13
-      },
-    ]
-  },
-  
-  /* HOLD BACK VOMIT */
-   {
-    id: 30,
-    text: "You keep your guts in tact at the sight of the nurse's spilled. You step around her carefully and keep moving. You can see out the glimpses of windows through hospital room doors that you're on the ground level. So close to freedom from this nightmare, you sprint down the hallway until you stop short, your brain trying to wrap itself around the picture in front of you: your fellow soldiers, screaming in agony and desperation, fire their guns in rapid succession at a creature you can barely make out. From what you can see of it, though--emaciated body on all fours, rows upon rows of razor-sharp teeth, a flower-like mouth oozing with blood--you can tell the gunshots are not working. The creature moves, barely affected, and jumps from soldier to soldier, tearing arms out of sockets, feet from ankles, and gouging stomachs open like the nurse from earlier. The soldiers fall, one by one, within seconds of each other. The creature faces you and charges.",
-    options: [
-     {
-        text: "Take out your gun. Last ditch effort.",
-        nextText: 20
-      },
-      {
-        text: "Try to run back the way you came.",
-        nextText: 25
-      },
-    ]
-  },
-  
-  /* VOMIT */
-   {
-    id: 31,
-    text: "The lights begin to flash--no, more than flash; they're strobing, flickering violently. An alarm blares over the sound system, but no instructions follow. There's supposed to be instructions, there's always instructions. But you're left in the dark. You curse under your breath, but you're not really sure who or what it's directed at. You look around at the candystripers and see them frantic and confused. It hits you that this is a real emergency, that something is truly happening. You hear commotion from a couple hallways over.",
-    options: [
-     {
-        text: "Stay, man your station. You don't know what's happening, you need to be on guard.",
-        nextText: 13
-      },
-      {
-        text: "Investigate the commotion. Someone could be in need of your assistance.",
-        nextText: 13
-      },
-    ]
-  },
-  
+  }
+
 ]
 
 startGame()
-  </script>
-  
+
+</script>
+
 </body>
-
-
 </html>
